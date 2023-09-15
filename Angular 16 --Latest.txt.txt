@@ -25098,5 +25098,31 @@ https://github.com/microsoft/rush-example/blob/main/common/config/rush/.npmrc
 How to remove Node.js from windows completely?
 https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows
 
-HOw to install multiple versions of Node & Angular?
+HOw to install multiple versions of Node & Angular on the same computer?
+https://www.youtube.com/watch?v=8r75fmuybC0
+https://www.youtube.com/watch?v=_8FizjwXVzA
+https://www.youtube.com/watch?v=RDScvojqAio
+https://www.youtube.com/watch?v=-inrG8xNpGg
+
+
 https://www.getfishtank.com/blog/use-nvm-to-install-multiple-node-versions#:~:text=Now%20you%20can%20have%20multiple,to%20switch%20between%20different%20versions.
+https://stackoverflow.com/questions/43018777/angular-cli-different-versions-in-the-same-computer
+https://dev.to/patricepeartree/how-to-run-multiple-node-and-angular-versions-simultaneously-3lfj
+https://blog.logrocket.com/switching-between-node-versions-during-development/
+https://www.getfishtank.com/blog/use-nvm-to-install-multiple-node-versions
+https://www.sharepointcafe.net/2023/02/can-we-install-multiple-versions-of-angular-on-a-single-system.html#:~:text=If%20you%20are%20asked%20whether,can%20use%20multiple%20Angular%20versions.
+
+How to install local angular version?
+cd to a folder
+npm install @angular/cli@14.2.7
+this will add package.json and node_modules
+to create a new project using this local angular version (and not global angular version) use ng from node_modules
+node_modules/.bin/ng new ng-14.2 (this will create a new angular project using 14.2)
+
+to run it execute node_modules/.bin/ng serve
+
+
+
+or install latest
+npm install -g @angular/cli@latest
+
