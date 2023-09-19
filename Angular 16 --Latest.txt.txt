@@ -25068,6 +25068,14 @@ Json.stringify (https://www.w3schools.com/js/js_json_stringify.asp)
 JSON.Parse      (https://www.w3schools.com/js/js_json_parse.asp)
 
 
+<body ng-controller="sportsStoreCtrl">
+    <div class="panel panel-default row" ng-controller="productListCtrl">
+
+***$scope inheritance***
+$scope for productListCtrl inherits data and behaviors(methods) from $scope of sportsStoreCtrl
+
+limitTo filter -> pg 144
+
 -------------------------------------Upgrading from AngularJs to Angular-----------------------------------------
 
 https://angular.io/guide/upgrade
