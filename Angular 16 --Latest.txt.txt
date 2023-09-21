@@ -1,3 +1,16 @@
+Reference Commands:
+git config --list => to list all git config settings including username and email
+
+npm show default config anf overrides
+npm config ls -l
+
+npm config list (tcheck what registry pointing to
+
+cloning using SSH in VsCode Powershell: 
+git clone git@github.com:reponame
+
+git basic commands:
+https://docs.github.com/en/get-started/using-git/about-git
 
 TODO:
 ----------------------------------Certifications & Courses complete by Oct 1------------------------------------------
@@ -80,10 +93,20 @@ TODO:
        https://nx.dev/ (Osmancik, Mehmet). Tool for micro-front end
        *See at end for video/url links*
 
+       Nx official
+       https://nxplaybook.com/p/nx-workspaces
+       https://nx.dev/getting-started/intro
+
        High-Level Overview
        https://www.youtube.com/watch?v=NCFQBRh3hZk
        https://www.youtube.com/watch?v=gEv4WSDM2Z4
 
+       https://www.youtube.com/watch?v=cXOkmOy-8dk&t=256s
+       https://www.youtube.com/watch?v=dJG9zH30c-o
+       https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
+       https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
+
+       
  Other Options: Skill Demonstration(manager. have to demo), Project Experience(manager)
 
    ---------------------------------Update Angular Latest Knowledge-------------------------
@@ -597,10 +620,21 @@ https://massivepixel.io/blog/angular-best-practices/
 angular change detection:
 https://mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/
 
+npm install rimraf --global (to install globally)
 npm install rimraf --glob  (to install globally)
 rimraf ./node_modules or  rimraf node_modules (delete node_modules)
 
 npm install rimraf@3.0.1
+
+check local angular version in a project when no global angular is installed:
+2 ways
+1) node_modules/.bin/ng --version
+2) 
+add a line to scripts in package.json
+"scripts": {
+   "test33": "ng --version"   --> ng here will use local angular version
+
+
 
 Angula Unit Testing
 karma.conf.cli.js - line 115
@@ -24827,6 +24861,20 @@ Sample NGRX applications per online docs - TODO: https://ngrx.io/resources
 
 *************************************6) Misc:  Micro-front end architecture with Angular ************************************
 
+Nx official
+https://nxplaybook.com/p/nx-workspaces
+https://nx.dev/getting-started/intro
+
+NX Official Videos with Angular:
+https://www.youtube.com/watch?v=cXOkmOy-8dk&list=PLakNactNC1dH2ff_srFKtabxA-1a3Pv4f
+https://www.youtube.com/watch?v=cXOkmOy-8dk&t=256s
+https://www.youtube.com/watch?v=2mYLe9Kp9VM&list=PLakNactNC1dH38AfqmwabvOszDmKriGco
+https://www.youtube.com/watch?v=dJG9zH30c-o
+https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
+https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
+https://www.youtube.com/watch?v=bwPkz4MrPDI
+
+
 Videos:
 https://www.youtube.com/watch?v=NCFQBRh3hZk
 https://www.youtube.com/watch?v=gEv4WSDM2Z4
@@ -25143,3 +25191,39 @@ nvm install 18.17.1  (install node 18.17.1 for Angular 16)
 nvm use 10.23.0  (to switch to a different node version)
 
 nvm list (to list all node versions)
+
+
+MonoRepo:
+1 Repo can have many projects.
+For example, a monorepo can contain a directory for a web app project, a directory for a mobile app project, and a directory for a server app project. The projects can be unrelated and can be completely distinct.
+
+
+npx vs npm
+npx: execute npm packages without installing them
+NPX is installed automatically with NPM version 5.2.0 and above.
+https://www.codingninjas.com/studio/library/difference-between-npm-and-npx
+https://www.geeksforgeeks.org/what-are-the-differences-between-npm-and-npx
+https://sentry.io/answers/difference-between-npm-and-npx-in-javascript
+
+
+--save-exact  (npm install xxx --save --save-exact)
+https://javascript.plainenglish.io/how-to-install-npm-packages-with-an-exact-version-558599f0aa5b
+
+
+********SSH Setup to connect to Github********
+
+Main: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
+
+1) Generate a new "private SSH key" and add it to the "SSH agent"
+   https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+2) You must also add the "public SSH key" to your account on GitHub before you use the key to authenticate or sign commits.
+   https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account
+
+3) https://docs.github.com/en/enterprise-cloud@latest/authentication/authenticating-with-saml-single-sign-on/authorizing-an-ssh-key-for-use-with-saml-single-sign-on
+
+cloning using SSH in Powershell:
+git clone git@github.com:xxx.git
+
+
+
