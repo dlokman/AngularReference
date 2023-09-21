@@ -6,7 +6,7 @@ npm config ls -l
 
 npm config list (tcheck what registry pointing to
 
-cloning using SSH in VsCode Powershell: 
+cloning using SSH in VsCode Powershell:
 git clone git@github.com:reponame
 
 git basic commands:
@@ -106,7 +106,7 @@ TODO:
        https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
        https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
 
-       
+
  Other Options: Skill Demonstration(manager. have to demo), Project Experience(manager)
 
    ---------------------------------Update Angular Latest Knowledge-------------------------
@@ -629,7 +629,7 @@ npm install rimraf@3.0.1
 check local angular version in a project when no global angular is installed:
 2 ways
 1) node_modules/.bin/ng --version
-2) 
+2)
 add a line to scripts in package.json
 "scripts": {
    "test33": "ng --version"   --> ng here will use local angular version
@@ -25123,6 +25123,36 @@ JSON.Parse      (https://www.w3schools.com/js/js_json_parse.asp)
 $scope for productListCtrl inherits data and behaviors(methods) from $scope of sportsStoreCtrl
 
 limitTo filter -> pg 144
+
+Template Binding - Checks the $scope
+
+AngularJs Services are singleton- only one instance (pg 157)
+
+Directives are self-contained, reusable units of functionality that sit at the heart of AngularJS development.
+
+Custom directives
+
+Directives
+restrict: "E" => directive can be applied only as an element
+restrict: "EA" => directive can be applied as an element or as an attribute
+
+https://docs.angularjs.org/guide/directive
+'A' - only matches attribute name
+'E' - only matches element name
+'C' - only matches class name
+'M' - only matches comment
+
+
+.directive("cartSummary", function (cart) {
+	return {
+ 		restrict: "E",
+
+applied as  (with a '-')
+<cart-summary />
+
+scopes can inherit from one another when controllers are nested or (as I explain in Chapter 17) when directives are defined.
+
+
 
 -------------------------------------Upgrading from AngularJs to Angular-----------------------------------------
 
