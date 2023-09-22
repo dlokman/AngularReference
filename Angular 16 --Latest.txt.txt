@@ -108,6 +108,13 @@ TODO:
 
        https://www.youtube.com/watch?v=ZAO0yXupIIE&t=177s ??
 
+	   Nx sample projects
+	   https://github.com/nrwl/nx-examples
+	   https://github.com/nrwl/nx-workshop
+	   https://github.com/trungk18/angular-spotify
+	   https://github.com/nrwl/nx-recipes
+	   https://github.com/nrwl/nx-apollo-angular-example
+
  Other Options: Skill Demonstration(manager. have to demo), Project Experience(manager)
 
    ---------------------------------Update Angular Latest Knowledge-------------------------
@@ -24875,6 +24882,13 @@ https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
 https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
 https://www.youtube.com/watch?v=bwPkz4MrPDI
 
+Nx sample projects
+https://github.com/nrwl/nx-examples
+https://github.com/nrwl/nx-workshop
+https://github.com/trungk18/angular-spotify
+https://github.com/nrwl/nx-recipes
+https://github.com/nrwl/nx-apollo-angular-example
+
 
 Videos:
 https://www.youtube.com/watch?v=NCFQBRh3hZk
@@ -25258,6 +25272,18 @@ git clone git@github.com:xxx.git
 
 
 <------------------------------------------NX--------------------------------------------->
+
+Nx sample projects
+
+https://github.com/nrwl/nx-examples
+
+https://github.com/nrwl/nx-workshop
+
+https://github.com/trungk18/angular-spotify
+
+https://github.com/nrwl/nx-recipes
+
+https://github.com/nrwl/nx-apollo-angular-example
 
 package.json
 @nrwl/angular": "10.10.1"  <-- This package is an Angular plugin for Nx.
