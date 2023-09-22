@@ -106,6 +106,7 @@ TODO:
        https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
        https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
 
+       https://www.youtube.com/watch?v=ZAO0yXupIIE&t=177s ??
 
  Other Options: Skill Demonstration(manager. have to demo), Project Experience(manager)
 
@@ -25254,6 +25255,129 @@ Main: https://docs.github.com/en/authentication/connecting-to-github-with-ssh
 
 cloning using SSH in Powershell:
 git clone git@github.com:xxx.git
+
+
+<------------------------------------------NX--------------------------------------------->
+
+package.json
+@nrwl/angular": "10.10.1"  <-- This package is an Angular plugin for Nx.
+https://www.npmjs.com/package/@nx/angular
+
+https://nxplaybook.com/courses/709074/lectures/12735465
+This course will introduce you to the essential features of Nx, created by Nrwl.
+This course will introduce you to the essential features of https://nx.dev, created by https://nrwl.io
+
+-----------------Process per video Nx version 16.8.1-----------------
+(per video: https://nxplaybook.com/courses/709074/lectures/12735532):
+1) Create new workspace
+npx create-nx-workspace my-org
+
+2) What to create in the new Workspace?
+empty, web components, angular, angular-nest, react, react-nest
+
+3)What CLI to power the Nx workspace
+a) NX  (CLI for Js and Typescript applications)
+b) Angular CLI (CLI for Angular applications. Recommended for Angular projects)
+
+
+Folder structure
+1) apps (keep lightweight. runnable application. entry points)
+2) libs (imported by apps. heavy lifting)
+3) tools (scripts like db scripts or schematics)
+4) tsconfig.json (can be overriden by individual app or library if needed. typescript compiler options)
+5) nx.json and workspace.json help nx know how apps and libraries relate to each other and what actions
+can be performed on each app or library.
+If using Angular CLI then workspace.json will be called angular.json
+
+if Nx project has workspace.json => using NX based CLI
+if Nx project has angular.json => using Angular CLI
+
+create-nx-workspace@16.8.1
+
+Nx version  (or check package.json)
+nx --version  => 16.8.1 current
+
+-----------------Process version Nx version 16.8.1-----------------
+1) npx create-nx-workspace my-org
+2) Which stack to use
+None, React, Angular, Node
+3) Integrated monorepo, or standalone project? (Check ClientWorks) <-----
+Integrated Monorepo:  Nx creates a monorepo that contains multiple projects.
+Standalone:           Nx creates a single project and makes it fast.
+
+4) Application nameReverse
+5) style sheet (css or scss)
+6) Testrunner (Cypress, Playwright, None) for E2E Tests
+7) Would you like to use Standalone Components in your application? (Check ClientWorks) <------
+
+
+nx dep-graph (draws graph)
+
+to run 'my-org' project
+npx nx serve my-org
+
+https://nxplaybook.com/courses/709074/lectures/12736111
+1) To add Angular plugin to a NX project:
+yarn add -D @nrwl/angular (-D adds to dev dependencies)
+Or
+npm install @nrwl/angular --save-dev
+
+2) Create an angular app in NX called store (in apps folder) using routing and scss
+nx g @nrwl/angular:app store --directory=apps/store --routing --style=scss
+
+
+npm vs yarn:
+https://www.digitalocean.com/community/tutorials/nodejs-npm-yarn-cheatsheet
+
+npx nx g @nx/react:lib product-list
+plugin => @nx/react
+library generator => :lib
+name=> product-list
+will get created in the libs folder at the same level as apps folder
+
+https://nx.dev/concepts/more-concepts/global-nx
+With a global Nx installation, Nx looks for the local copy of Nx in your repo and hands off the process execution to it. This means that whichever version of Nx is installed locally in your repo is still the version of Nx that runs your code.
+
+What is a preset?
+https://nx.dev/extending-nx/recipes/create-preset#what-is-a-preset
+
+npx nx g @nx/angular:app inventory --directory=apps/inventory --dry-run
+
+--dry-run just to check the output. won't execute it
+
+nx command reference:
+https://nx.dev/nx-api/nx
+https://nx.dev/packages/angular/generators/component
+
+Tutotial puts shared components under lib folder and are created as standalone components
+
+TODO Next
+https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial#importing-libraries-into-the-angular-applications
+
+To run Unit tests for a project 'orders' via project.json, run
+nx test orders
+
+Testing and Lintin g
+nx test angular-store     # runs the tests for angular-store
+nx lint inventory         # runs the linter on inventory
+nx e2e angular-store-e2e  #  runs e2e tests for the angular-store
+
+//run test lint e2e on all projects (https://nx.dev/nx-api/nx/documents/run-many)
+nx run-many -t test lint e2e
+
+//to build all projects
+npx nx run-many -t build
+
+//to build angular-store project only
+npx nx or nx
+nx build angular-store
+
+type of your library
+"feature" library,
+"utility" library,
+"data-access" library,
+"ui" library
+
 
 
 
