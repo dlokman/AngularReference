@@ -109,6 +109,7 @@ TODO:
        https://www.youtube.com/watch?v=ZAO0yXupIIE&t=177s ??
 
 	   Nx sample projects
+	   https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps)
 	   https://github.com/nrwl/nx-examples
 	   https://github.com/nrwl/nx-workshop
 	   https://github.com/trungk18/angular-spotify
@@ -25273,7 +25274,12 @@ git clone git@github.com:xxx.git
 
 <------------------------------------------NX--------------------------------------------->
 
+Sample Project: https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial
+Tasks: https://nx.dev/core-features/run-tasks
+
 Nx sample projects
+
+https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
 
 https://github.com/nrwl/nx-examples
 
@@ -25321,7 +25327,7 @@ if Nx project has angular.json => using Angular CLI
 create-nx-workspace@16.8.1
 
 Nx version  (or check package.json)
-nx --version  => 16.8.1 current
+nx --version  => 16.9.0 current global installation (npm install --global nx@latest)
 
 -----------------Process version Nx version 16.8.1-----------------
 1) npx create-nx-workspace my-org
@@ -25403,6 +25409,140 @@ type of your library
 "utility" library,
 "data-access" library,
 "ui" library
+
+Nx is Modern Angular
+https://blog.nrwl.io/nx-is-modern-angular-bda6cf10746d
+
+
+*******Affected command*******
+Run tasks only for projects that are actually affected by the code changes that you've made
+
+Make some code change and then run
+nx affected -t test
+
+Note that the unit tests were run for products, angular-store and inventory, but not for orders because a change to products can not possibly break the tests for orders.
+
+Storybook:
+https://storybook.js.org/
+https://nx.dev/recipes/storybook/overview-angular
+
+
+header is project name. Target is build
+nx run header:build
+
+Tasks can be defined as npm scripts in a project's package.json file or as targets in a project.json file
+    target  project name
+nx  test    products
+or
+npx nx test products
+
+-t => target
+Run the build target for all projects in the repo:
+npx nx run-many -t build
+
+Run the build, lint and test target for all projects in the repo:
+npx nx run-many -t build lint test
+
+Run the build, lint and test target just on the header and footer projects:
+npx nx run-many -t build lint test -p header footer
+
+❯ nx run [project]:[command]
+❯ nx run cart:build
+
+https://nx.dev/core-features/plugin-features/use-task-executors
+ nx build mylib --configuration=production or
+ nx run mylib:build:production.
+
+When you run nx test app1, you are telling Nx to run the app1:test task plus all the tasks it depends on.
+
+NX folder structure
+https://nx.dev/concepts/more-concepts/folder-structure
+
+Since version 14, Nx provides out-of-the-box Module Federation support to both React and Angular. The Micro Frontend (MFE) architecture
+builds on top of Module Federation by providing independent deployability.
+
+Micro Frontend Architecture (Builds on top of Module Federation)
+1) https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+2) https://nx.dev/concepts/more-concepts/micro-frontend-architecture
+
+As applications grow, builds can become unacceptably slow, which leads to slow CI/CD pipelines
+"Module Federation" provides a solution by allowing a Single Page Application (SPA) to be sliced
+into multiple smaller remote applications that are built independently.
+
+Micro Frontend Architecture/Module Federation provides *faster Builds (faster CI/CD Pipelines)* by slicing an application into multiple smaller remote
+applications
+
+Preset
+https://nx.dev/extending-nx/recipes/create-preset#what-is-a-preset
+
+e.g:
+npx create-nx-workspace --preset=qwik-nx
+
+qwik-nx is a Nx community plugin. It is a generator that you can use to create a new Nx workspace with Qwik support.
+
+create-nx-workspace API (Preset values e.g. "apps", "angular-monorepo")
+https://nx.dev/nx-api/nx/documents/create-nx-workspace
+
+preset
+Type: string
+Customizes the initial content of your workspace. Default presets include:
+["apps", "empty", "core", "npm", "ts", "web-components", "angular-monorepo", "angular-standalone", "react-monorepo",
+"react-standalone", "next", "nextjs-standalone", "react-native", "expo", "nest", "express", "react", "angular",
+"node-standalone", "node-monorepo", "ts-standalone"].
+
+****Module Federation****
+Purpose: Speed up CI/CD Pipelines by slicing slicing an application into multiple smaller remote applications
+Pros:
+1) Speeds up CI/CD Pipelines since applications are smaller
+    (Speeding Up Angular Builds Using Module Federation)
+Cons:
+1) Cognitive overhead of developing multiple applications versus a SPA
+2) Coordinating build and deployment across many applications is a huge headache, especially in a multi-repo setup.
+3) Version-Mismatch-Hell where different applications are deployed with different versions of shared libraries can lead to unexpected errors
+4) Developers need to think about which remotes they are working on, since it is a waste of CPU and memory to run all remotes in development mode. In practice this may not be a problem if the teams are already divided by domain or feature
+5) Increased orchestration since remotes are independent of each other, shared state may require the **host application** to coordinate it between remotes. For example, sharing Redux state across remotes is more complicated versus a SPA.
+
+Module Federation Architecture:
+
+With Module Federation, a large application is split into
+1) A single Host application that references external...
+2) Remote applications, which handle a single domain or feature.
+
+E.g 1 Host application and 3 remotes(shop, cart, about). 3 teams. Each team works on 1 remote application.
+
+Module Federation Example(https://github.com/nrwl/ng-module-federation)
+
+nx serve host
+the executor is going to build all the remotes first. If the remotes are available in the cache (local or remote), the executor is
+going to restore them from the cache. All the remotes in the case are loaded and are available in the application, but they are
+static and cannot be changed (This is great for running e2e tests in CI but not useful for local development.)
+
+nx serve host --devRemotes=shop,cart
+The executor is going to build (or fetch from cache) about but is going to start two dev servers, one for shop and another one
+for cart. The about remote is static, while shop and cart will watch for file changes.
+
+Idea: You will only run your remote in the dev mode, and other remotes will be retrieved from cache
+    You will be able to run the serve command 10-20 times faster and also see the app reflect you file changes 10-20 times faster.
+
+This gives you a good developer experience: the whole app is available, but only the part you are working on is served and watched.
+The rest is "served" from cache, so is basically free (both CPU and RAM wise)
+Need distributed caching set up
+
+This repo utilizes Nx Cloud's distributed tasks execution
+
+npm install --save-dev @nx/angular   <--- installing @nx/angular : which is angular plugin for nx
+
+
+To Create workspace using specific version of nx
+npx create-nx-workspace@14.2.0-rc.2 acme --preset=apps
+
+Issue:
+I'm following the tutorial on Module Federation at https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+I have NX 16.8.1 installed. When i execute the command per instructions in the article "npx create-nx-workspace acme --preset=apps" it creates a workspace but does not create an apps folder like mentioned in the article.
+If i change the command to use the same version of nx as the code in the github mentioned in the article i.e.  "nx": "14.2.0-rc.2", then it does create the apps folder.
+Looks like using --preset=apps option is not working like before.
+
+
 
 
 
