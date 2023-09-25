@@ -25544,6 +25544,26 @@ Looks like using --preset=apps option is not working like before.
 
 
 
+Faster Builds with Module Federation
+https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
 
+npx create-nx-workspace acme --preset=apps
+cd acme
+npm install --save-dev @nx/angular
+nx g @nx/angular:host host --directory=apps/host
+nx g @nx/angular:remote shop --host=host --directory=apps/shop
+nx g @nx/angular:remote cart --host=host --directory=apps/cart
+nx g @nx/angular:remote about --host=host --directory=apps/about
+nx serve host --open   (runs only host in development mode)
+nx serve host --open --devRemotes="shop,cart"  (runs shop and cart in development mode as well apart from running host in dev mode)
+
+
+nx g @nx/angular:library about-main --directory=libs/about-main
+nx g @nx/angular:library cart-main --directory=libs/cart-main
+nx g @nx/angular:library shop-main --directory=libs/shop-main
+nx g @nx/angular:library shared-components --directory=libs/shared-components
+
+
+nx g @nx/angular:component about-main --project=about-main --export
 
 
