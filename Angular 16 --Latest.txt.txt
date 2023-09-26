@@ -25274,6 +25274,16 @@ git clone git@github.com:xxx.git
 
 <------------------------------------------NX--------------------------------------------->
 
+Micro Front-Ends:
+1) https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+2) https://nx.dev/concepts/more-concepts/micro-frontend-architecture
+3) https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+
+https://nx.dev/reference/glossary
+
+Nx and Angular Version Compatibility Matrix
+https://nx.dev/nx-api/angular/documents/angular-nx-version-matrix
+
 Sample Project: https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial
 Tasks: https://nx.dev/core-features/run-tasks
 
@@ -25281,7 +25291,7 @@ Nx sample projects
 
 https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
 
-https://github.com/nrwl/nx-examples
+https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
 
 https://github.com/nrwl/nx-workshop
 
@@ -25290,6 +25300,16 @@ https://github.com/trungk18/angular-spotify
 https://github.com/nrwl/nx-recipes
 
 https://github.com/nrwl/nx-apollo-angular-example
+
+Official Sample Projects:
+1) https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial
+2) https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+3) https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+Others:
+1) https://nxplaybook.com/p/nx-workspaces
+
+
+
 
 package.json
 @nrwl/angular": "10.10.1"  <-- This package is an Angular plugin for Nx.
@@ -25565,5 +25585,133 @@ nx g @nx/angular:library shared-components --directory=libs/shared-components
 
 
 nx g @nx/angular:component about-main --project=about-main --export
+
+When should I use micro frontend architecture?
+We recommend MFE for teams that require applications to be ***deployed independently***
+
+Changes to Shared Libraries Concern: <----------------------------------------------------
+https://nx.dev/concepts/more-concepts/micro-frontend-architecture
+It is also recommended to agree on a process to handle changes to core libraries (i.e. ones that
+are shared between applications). Since the core changes affect all applications, it also blocks
+all other releases, thus should not occur too frequently.
+
+One such strategy is to share as little as possible between applications.
+
+As such, if we follow a 80/20 approach: https://nx.dev/concepts/more-concepts/applications-and-libraries
+place 80% of your logic into the libs/ folder
+and 20% into apps/
+
+Library Types: https://nx.dev/concepts/more-concepts/library-types
+Feature libraries:
+
+Developers should consider feature libraries as libraries that implement smart UI (with access to data sources) for specific business use cases or pages in an application.
+
+UI libraries:
+A UI library contains only presentational components (also called "dumb" components).
+
+Data-access libraries:
+A data-access library contains code for interacting with a back-end system. It also includes all the code related to state management.
+
+Utility libraries:
+A utility library contains low-level utilities used by many libraries and applications.
+
+Example File Hierarchy
+
+apps/
+  booking/
+  check-in/
+libs/
+  booking/                 <---- grouping folder
+    feature-shell/         <---- library
+
+  check-in/
+    feature-shell/
+
+  shared/                  <---- grouping folder
+    data-access/           <---- library
+
+    seatmap/               <---- grouping folder
+      data-access/         <---- library
+      feature-seatmap/     <---- library
+
+
+Global Vs Local NX Installation: https://nx.dev/concepts/more-concepts/global-nx
+With a global Nx installation, Nx looks for the local copy of Nx in your repo and hands off the
+process execution to it. This means that whichever version of Nx is installed locally in your
+repo is still the version of Nx that runs your code.
+
+npm list --global nx  (checking global nx version)
+
+Migrating AngularJs to NX: https://nx.dev/recipes/angular/migration/angularjs
+
+CI (Continous Integration) Setup: https://nx.dev/recipes/ci/ci-setup  <-----------------------
+
+Environment Variables
+1) https://nx.dev/recipes/tips-n-tricks/define-environment-variables
+2) https://nx.dev/recipes/angular/use-environment-variables-in-angular
+
+How to add Tailwind:
+https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
+
+
+Build once, deploy everywhere:  <-----------------------
+Advanced Angular Micro Frontends with Dynamic Module Federation:
+https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+“Build once, deploy everywhere” is the concept of being able to create a single build artefact
+ of your application and deploy it to multiple environments such as staging and production.
+
+ RemoteEntryModule: https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+ The RemoteEntryModule generated will be imported in app.module.ts file, however, it is not used in
+ the AppModule itself. This is to allow TS to find the Module during compilation, allowing it to be
+  included in the built bundle. This is required for the Module Federation Plugin to expose the
+  Module correctly. You can choose to import the RemoteEntryModule in the AppModule if you wish,
+   however, it is not necessary._
+
+
+TODO-------------------------
+https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+
+Websites:
+https://www.bacancytechnology.com/blog/angular-micro-frontends-architecture
+https://dev.to/michaeljota/how-to-split-an-angular-app-into-micro-frontend-apps-1fi9
+https://developer.okta.com/blog/2022/05/17/angular-microfrontend-auth
+https://levelup.gitconnected.com/your-first-angular-microfrontend-58950768a465
+https://blog.briebug.com/blog/micro-frontends-angular
+https://serengetitech.com/tech/micro-frontend-architecture-in-angular-applications-module-federation/
+https://nx.dev/getting-started/tutorials/angular-standalone-tutorial
+https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+
+
+Nx sample projects
+(Check how strcuture Shared Libraries - data access vs shared components)
+https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access)
+https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
+https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
+https://github.com/nrwl/nx-workshop
+https://github.com/trungk18/angular-spotify
+https://github.com/nrwl/nx-recipes
+https://github.com/nrwl/nx-apollo-angular-example
+
+
+Videos:
+High-Level Overview
+https://www.youtube.com/watch?v=NCFQBRh3hZk
+https://www.youtube.com/watch?v=gEv4WSDM2Z4
+https://www.youtube.com/watch?v=cXOkmOy-8dk&t=256s
+https://www.youtube.com/watch?v=dJG9zH30c-o
+https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
+https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
+https://www.youtube.com/playlist?list=PLakNactNC1dH38AfqmwabvOszDmKriGco
+https://www.youtube.com/watch?v=cXOkmOy-8dk&list=PLakNactNC1dH2ff_srFKtabxA-1a3Pv4f
+https://www.youtube.com/watch?v=EGdbmj-kj88
+https://www.youtube.com/watch?v=e8-hBYw5bx0
+
+
+Misc:
+https://www.youtube.com/watch?v=5jPKKfko2BU
+https://www.youtube.com/watch?v=EGdbmj-kj88&t=1238s
+https://www.youtube.com/watch?v=lKKsjpH09dU
+https://www.youtube.com/watch?v=bwPkz4MrPDI
+
 
 
