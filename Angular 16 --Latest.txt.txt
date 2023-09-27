@@ -25274,10 +25274,21 @@ git clone git@github.com:xxx.git
 
 <------------------------------------------NX--------------------------------------------->
 
+Suitable for large application to break into multiple smaller applications and make the smaller application's CI/CD faster and
+independent so different teams can work on different smaller applications
+https://www.bacancytechnology.com/blog/angular-micro-frontends-architecture
+
 Micro Front-Ends:
-1) https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
-2) https://nx.dev/concepts/more-concepts/micro-frontend-architecture
-3) https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+1) Tutorial: https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+   Git: https://github.com/nrwl/ng-module-federation
+
+2) Tutorial: https://nx.dev/concepts/more-concepts/micro-frontend-architecture
+
+3) Tutorial: https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+   Git: https://github.com/Coly010/nx-ng-dyn-fed/tree/main
+
+   Tutorial shows how to load a remote app dynamically from url. First loads remote app statically, then changes it to be Dynamically
+
 
 https://nx.dev/reference/glossary
 
@@ -25567,6 +25578,52 @@ Looks like using --preset=apps option is not working like before.
 Faster Builds with Module Federation
 https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
 
+npx nx [target] [project]
+
+can add --watch flag  (run in interactive mode. change and reload?)
+
+npx nx [target] -> set in project.json
+npx nx serve [project] or npx nx project:serve
+npx nx test  [project]   //jest testing
+npx nx lint  [project]
+npx nx e2e    e2e        //cypress e2e
+npx nx build (will create production build by default- in dist folder)
+
+
+//run build test lint in parallel for all projects
+npx nx run-many --target build test lint
+npx nx run-many -t build test lint
+
+npx nx list @nx/angular
+
+--dry-run flag (to check without executing)
+
+to create standalone component:
+npx nx g @nx/angular:component hello-world --standalone
+
+can add tags to project.json to inform type and scope
+"tags": ["type:ui", "scope:shared"]
+specify rules in eslint
+e.g. library can only depend on some other library
+
+
+apps
+
+lib
+  orders
+  Products
+  shared>ui
+
+//will only execute the tasks that got affected by the PR
+npx nx affected:test
+
+using module federation updates project.json
+target>build to update from @angular-devkit to @nx/angular
+
+cd dist/production
+npx http-server . // (to serve the production bundle)
+----------------------------------------------------------------
+
 npx create-nx-workspace acme --preset=apps
 cd acme
 npm install --save-dev @nx/angular
@@ -25583,8 +25640,14 @@ nx g @nx/angular:library cart-main --directory=libs/cart-main
 nx g @nx/angular:library shop-main --directory=libs/shop-main
 nx g @nx/angular:library shared-components --directory=libs/shared-components
 
+nx g @nx/angular:service user --project=shared-data-access-user (projectname is project.json)
 
 nx g @nx/angular:component about-main --project=about-main --export
+
+nx run login:serve (run angular app login and serve it)
+
+nx serve host --open --devRemotes="shop,cart"
+
 
 When should I use micro frontend architecture?
 We recommend MFE for teams that require applications to be ***deployed independently***
@@ -25655,63 +25718,90 @@ https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
 
 
 Build once, deploy everywhere:  <-----------------------
+Single Build is pushed to multiple environments such as Staging & Production<-----------------------
 Advanced Angular Micro Frontends with Dynamic Module Federation:
 https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
-“Build once, deploy everywhere” is the concept of being able to create a single build artefact
- of your application and deploy it to multiple environments such as staging and production.
+“Build once, deploy everywhere” is the concept of being able to create a "single build artifact"
+ of your application and deploy it to "multiple environments" such as staging and production.
 
  RemoteEntryModule: https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
  The RemoteEntryModule generated will be imported in app.module.ts file, however, it is not used in
  the AppModule itself. This is to allow TS to find the Module during compilation, allowing it to be
   included in the built bundle. This is required for the Module Federation Plugin to expose the
   Module correctly. You can choose to import the RemoteEntryModule in the AppModule if you wish,
-   however, it is not necessary._
+   however, it is not necessary.
 
 
-TODO-------------------------
+Dashboard (Host)
+
+
+npx create-nx-workspace acme (will ask for Application name)
+
+npx create-nx-workspace acme --preset=apps (preset apps is deprecated)
+Did not create apps folder
+
+npx create-nx-workspace acme --preset=angular-monorepo (will ask for Application name)
+
+npx create-nx-workspace acme --preset=angular (will ask for Application name)
+
+
+However, by taking advantage of Nx's project graph, Nx will automatically find and share the dependencies of your applications.
+Execute 'nx graph' to see dependencies. if have common dependencies and that common dependency has a service then
+the service will be shared
 https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
 
-Websites:
+
+If the host is configured dynamically, then adding a new remote with that host will add the necessary changes
+for dynamic federation
+https://nx.dev/recipes/angular/dynamic-module-federation-with-angular#generate-the-employee-host-application
+
+
+Difference between micro-frontend and micro-services
+micro-frontend: Breaks front-end UI application into smaller UI applications
+micro-services: Breaks Api into smaller Apis
 https://www.bacancytechnology.com/blog/angular-micro-frontends-architecture
-https://dev.to/michaeljota/how-to-split-an-angular-app-into-micro-frontend-apps-1fi9
-https://developer.okta.com/blog/2022/05/17/angular-microfrontend-auth
-https://levelup.gitconnected.com/your-first-angular-microfrontend-58950768a465
-https://blog.briebug.com/blog/micro-frontends-angular
-https://serengetitech.com/tech/micro-frontend-architecture-in-angular-applications-module-federation/
+
+Angular standalone: 1 project only. Opposite of mono-repo (1 repo and multiple apps)
 https://nx.dev/getting-started/tutorials/angular-standalone-tutorial
-https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
 
-
-Nx sample projects
-(Check how strcuture Shared Libraries - data access vs shared components)
-https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access)
-https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
-https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
-https://github.com/nrwl/nx-workshop
-https://github.com/trungk18/angular-spotify
-https://github.com/nrwl/nx-recipes
-https://github.com/nrwl/nx-apollo-angular-example
-
+Reference Websites:
+https://www.bacancytechnology.com/blog/angular-micro-frontends-architecture
+https://levelup.gitconnected.com/your-first-angular-microfrontend-58950768a465 (when to use Micro front end)
 
 Videos:
 High-Level Overview
-https://www.youtube.com/watch?v=NCFQBRh3hZk
+https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s (25 min - good for basic command ref but for standalone repo)
+https://www.youtube.com/watch?v=JkcaGzhRjkc&t=8s   (27 min - good- prod build at 19 min + https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation#production-build-and-deployment-with-nx-cloud )
 https://www.youtube.com/watch?v=gEv4WSDM2Z4
 https://www.youtube.com/watch?v=cXOkmOy-8dk&t=256s
-https://www.youtube.com/watch?v=dJG9zH30c-o
-https://www.youtube.com/watch?v=e8-hBYw5bx0&t=1s
-https://www.youtube.com/watch?v=ZAO0yXupIIE&t=175s
-https://www.youtube.com/playlist?list=PLakNactNC1dH38AfqmwabvOszDmKriGco
+https://www.youtube.com/watch?v=tsIZjUAtF1U
+https://www.youtube.com/watch?v=bwPkz4MrPDI (43 min)
+
+Soso:
 https://www.youtube.com/watch?v=cXOkmOy-8dk&list=PLakNactNC1dH2ff_srFKtabxA-1a3Pv4f
-https://www.youtube.com/watch?v=EGdbmj-kj88
-https://www.youtube.com/watch?v=e8-hBYw5bx0
+https://www.youtube.com/watch?v=dJG9zH30c-o
+https://developer.okta.com/blog/2022/05/17/angular-microfrontend-auth
+https://blog.briebug.com/blog/micro-frontends-angular
+https://serengetitech.com/tech/micro-frontend-architecture-in-angular-applications-module-federation/
+
+Nx sample projects
+
+https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
+
+Misc Reference Projects (CI setup, Mono Repo, Storybook etc)
+https://github.com/nrwl/nx-workshop
+https://github.com/nrwl/nx-recipes
 
 
-Misc:
-https://www.youtube.com/watch?v=5jPKKfko2BU
-https://www.youtube.com/watch?v=EGdbmj-kj88&t=1238s
-https://www.youtube.com/watch?v=lKKsjpH09dU
-https://www.youtube.com/watch?v=bwPkz4MrPDI
+<---------------------TODO--------------------------->
+
+(Check how strcuture Shared Libraries - data access vs shared components)
+https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access. eg service file)
+https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
+https://github.com/trungk18/angular-spotify
+
+
+
 
 
 
