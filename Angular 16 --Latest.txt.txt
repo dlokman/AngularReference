@@ -25272,6 +25272,9 @@ cloning using SSH in Powershell:
 git clone git@github.com:xxx.git
 
 
+Difference between npm and yarn
+https://phoenixnap.com/kb/yarn-vs-npm
+
 <------------------------------------------NX--------------------------------------------->
 
 Suitable for large application to break into multiple smaller applications and make the smaller application's CI/CD faster and
@@ -25719,7 +25722,8 @@ https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
 
 Build once, deploy everywhere:  <-----------------------
 Single Build is pushed to multiple environments such as Staging & Production<-----------------------
-Advanced Angular Micro Frontends with Dynamic Module Federation:
+
+******Advanced Angular Micro Frontends with Dynamic Module Federation******
 https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
 “Build once, deploy everywhere” is the concept of being able to create a "single build artifact"
  of your application and deploy it to "multiple environments" such as staging and production.
@@ -25784,22 +25788,89 @@ https://developer.okta.com/blog/2022/05/17/angular-microfrontend-auth
 https://blog.briebug.com/blog/micro-frontends-angular
 https://serengetitech.com/tech/micro-frontend-architecture-in-angular-applications-module-federation/
 
-Nx sample projects
+*********Nx sample projects*********
+1) https://nxplaybook.com/p/nx-workspaces  (Good!!. Check how generate file structure e.g data access. eg service file)
+   (overall walkthrough)
 
-https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
+2) https://nx.dev/getting-started/tutorials/angular-monorepo-tutorial
+	  https://github.com/nrwl/nx-recipes/tree/main/angular-monorepo
+      (Displaying shared components from libs folder)
+
+3) https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation
+ 	  https://github.com/nrwl/ng-module-federation (to speed up the builds of Angular apps. Has CI-Continuous Integration workflow in ci.yml)
+      reference video: https://www.youtube.com/watch?v=JkcaGzhRjkc&t=8s
+
+4) https://nx.dev/recipes/angular/dynamic-module-federation-with-angular
+      https://github.com/Coly010/nx-ng-dyn-fed
+
+Over-Engineered. Not good for learning
+(Check how strcuture Shared Libraries - data access vs shared components)
+https://github.com/trungk18/angular-spotify (Angular 15, Nx Workspace, ngrx, TailwindCSS and ng-zorro)
+
+SoSo (Nx, NGRX though. No data access layer. Uses mock data)
+https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
+
 
 Misc Reference Projects (CI setup, Mono Repo, Storybook etc)
 https://github.com/nrwl/nx-workshop
 https://github.com/nrwl/nx-recipes
 
 
-<---------------------TODO--------------------------->
+Module Federation
+1)Slices 1 App to multiple Apps.
 
-(Check how strcuture Shared Libraries - data access vs shared components)
-https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access. eg service file)
-https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
-https://github.com/trungk18/angular-spotify
+Dynamic Module Federation
 
+
+*********Micro Frontend Architecture with Module Federation Summary****
+
+As applications grow, builds can become unacceptably slow, which leads to slow CI/CD pipelines
+"Module Federation" provides a solution by allowing a Single Page Application (SPA) to be sliced
+into multiple smaller remote applications that are built independently.
+
+Purpose: Speed up CI/CD Pipelines by slicing slicing an application into multiple smaller remote applications
+
+Micro Frontend Architecture/Module Federation provides *faster Builds (faster CI/CD Pipelines)* by slicing an application into multiple smaller remote
+applications
+
+The ***Micro Frontend (MFE)*** architecture builds on top of ***Module Federation** by providing independent deployability.
+
+Module Federation Setup
+Break 1 Host application and multiple Remotes so that can have their own CI/CD
+
+
+****DevMode****
+ Host     http://localhost:4200   (Can have its own CI/CD)
+   About  http://localhost:4201   (Can have its own CI/CD)
+   Shop   http://localhost:4202   (Can have its own CI/CD)
+
+Host module-federation.config.js pulls it together
+
+module.exports = {
+  name: 'host',
+  remotes: ['cart', 'shop', 'about'],
+};
+
+Production build and deployment
+
+in host/webpack.config.prod.js, specify the urls where the remote bundles are:
+https://nx.dev/concepts/more-concepts/faster-builds-with-module-federation#production-build-and-deployment-with-nx-cloud
+
+
+*********Micro Frontend Architecture with Dynamic Module Federation Summary - Build Once Deploy Many****
+
+Very little incremental changes from Static version above
+
+Build Once Deploy Many: Build 1 time and use the same build for all environments. Each environment will just use  a different
+config to know the updated api urls.
+
+Micro Frontend Architecture with Static Module Federation:  At Build time, specify the location of remotes. Since its part of the build, have to build it for seperate
+environments (staging, production)
+
+Micro Frontend Architecture with Dynamic Module Federation Summary: At run time, find location of remotes. Since its runtime,
+each environment can just use a different config that informs the location of the remote. Hence, you can build once and deploy the same build to
+many environments
+src/assets/   => module-federation.manifest.json file
 
 
 
