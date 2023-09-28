@@ -25622,6 +25622,8 @@ target>build to update from @angular-devkit to @nx/angular
 
 cd dist/production
 npx http-server . // (to serve the production bundle)
+
+nx uses a lint rule blocks to use libs directly. you have to export via index.ts
 ----------------------------------------------------------------
 
 npx create-nx-workspace acme --preset=apps
@@ -25640,14 +25642,43 @@ nx g @nx/angular:library cart-main --directory=libs/cart-main
 nx g @nx/angular:library shop-main --directory=libs/shop-main
 nx g @nx/angular:library shared-components --directory=libs/shared-components
 
+// nx g @nx/angular:lib shop-main --directory=libs/shop-main
+
+nx g @nx/angular:pipe formatx --project=ui-formatters --export
+
+Docs for
+[collection]:[generator]
+@nx/angular:app => https://nx.dev/nx-api/angular/generators/application
+@nx/angular:lib => https://nx.dev/nx-api/angular/generators/library
+@nx/angular:pipe => https://nx.dev/nx-api/angular/generators/pipe
+
 nx g @nx/angular:service user --project=shared-data-access-user (projectname is project.json)
 
 nx g @nx/angular:component about-main --project=about-main --export
+
+npx nx g @nx/angular:app inventory --directory=apps/inventory (to create an angular app within apps folder)
+
+npx nx g @nx/angular:app --help     //lists all the commands  <--------------------------------------------------------------------
+npx nx g @nx/angular:lib --help     //lists all the commands  <--------------------------------------------------------------------
+npx nx g @nx/angular:remote --help  //lists all the commands  <--------------------------------------------------------------------
+
 
 nx run login:serve (run angular app login and serve it)
 
 nx serve host --open --devRemotes="shop,cart"
 
+nx graph
+or
+npx nx graph
+https://nx.dev/core-features/explore-graph
+
+nx affected:graph
+nx affected:dep-graph
+
+Check plugin help
+
+Shared Assets(Images) between different projects- last one:
+https://nxplaybook.com/courses/709074/lectures/12736150
 
 When should I use micro frontend architecture?
 We recommend MFE for teams that require applications to be ***deployed independently***
@@ -25696,6 +25727,14 @@ libs/
     seatmap/               <---- grouping folder
       data-access/         <---- library
       feature-seatmap/     <---- library
+
+
+apps/
+   api/  (express node api)
+   mysite/
+   mysite-e2e/
+libs/
+   api-interface/src/lib/api-interface.ts  (structure of api response plus Api url constant)
 
 
 Global Vs Local NX Installation: https://nx.dev/concepts/more-concepts/global-nx
@@ -25792,14 +25831,16 @@ Misc Reference Projects (CI setup, Mono Repo, Storybook etc)
 https://github.com/nrwl/nx-workshop
 https://github.com/nrwl/nx-recipes
 
+https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access. eg service file)
 
 <---------------------TODO--------------------------->
 
 (Check how strcuture Shared Libraries - data access vs shared components)
-https://nxplaybook.com/p/nx-workspaces  (Check how generate file structure e.g data access. eg service file)
+
 https://github.com/nrwl/nx-examples  (Official-Nx Micro-Frontend Example: https://nx.dev/showcase/example-repos/mfe)
 https://github.com/trungk18/angular-spotify
 
+LPL Webkit
 
 
 
