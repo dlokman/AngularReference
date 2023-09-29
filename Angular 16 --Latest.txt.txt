@@ -3687,6 +3687,7 @@ https://tomastrajan.github.io/angular-ngrx-material-starter#/settings
 
 -----------------------------------------------------Javascript/Typescript----------------------------------------------------------
 
+Javascript Style Guide: https://github.com/airbnb/javascript
 
 javascript/typescript (Pass by Value Vs Pass by Reference)
 
@@ -26018,3 +26019,26 @@ lib/
        pipes
        directives
 	   utils
+
+*************************************NX Main Features Summary***************************
+Diff bw MonoRepo and Micro FrontEnd: https://infinum.com/blog/micro-frontends-nx-angular/
+
+1- Mono-Repo
+	1 Repo for all the code. Can have seperate CI/CD for each Angular app
+
+***Folder/File Hierarchy starts getting too long but gives us seperate CI/CD Pipelines***
+2- Micro FrontEnd & MonoRepo   (Micro Frontend Architecture with Static Module Federation)
+	Slice 1 Angular App into multiple Angular Apps with each one having its own Ci/CD pipeline
+
+3- Micro FrontEnd & MonoRepo & Build Once Deploy Many (Micro Frontend Architecture with Dynamic Module Federation)
+    Same as #2. With additional advantage that you only build once and can deploy the same builds to
+	multiple environments (staging, production) with help from configuration file (diff apis for diff environments.
+	Configuration file swapped during CI/CD process)
+****************************************************************************************
+
+
+Convert to a Nx Monorepo (Integrated) using a specific nx version
+npx nx@15.x.x init --integrated
+
+Create Web Components
+https://lit.dev/
