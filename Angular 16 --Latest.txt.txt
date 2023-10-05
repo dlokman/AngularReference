@@ -116,6 +116,9 @@ TODO:
 	   https://github.com/nrwl/nx-recipes
 	   https://github.com/nrwl/nx-apollo-angular-example
 
+	7) Git course - Misc Learning (Find something in Udemy or Pluralsight to get credit? Compare content quality)
+	   https://learn.microsoft.com/en-us/training/paths/intro-to-vc-git/
+
  Other Options: Skill Demonstration(manager. have to demo), Project Experience(manager)
 
    ---------------------------------Update Angular Latest Knowledge-------------------------
@@ -356,6 +359,11 @@ You can now use Router without the need for RouterModule (and improved tree shak
 You can use provideRouter instead of routerModule.ForRoot or routerModule.ForChild
 
 Introduction of functional guards using inject() instead of class based guards
+
+Jest Unit Testing:
+https://www.jstwister.com/post/unit-testing-beginners-guide-testing-functions
+https://www.jstwister.com/post/unit-testing-beginners-guide-spying-fake-timers
+https://www.jstwister.com/post/unit-testing-beginners-guide-mock-http-and-files
 
 Unit Testing for router: Using RouterTestingHarness instead of stubs and spies
 https://blog.angular.io/write-better-tests-without-router-mocks-stubs-bf5fc95c1c57
@@ -629,11 +637,34 @@ https://massivepixel.io/blog/angular-best-practices/
 angular change detection:
 https://mokkapps.de/blog/the-last-guide-for-angular-change-detection-you-will-ever-need/
 
+
+
 npm install rimraf --global (to install globally)
 npm install rimraf --glob  (to install globally)
 rimraf ./node_modules or  rimraf node_modules (delete node_modules)
 
 npm install rimraf@3.0.1
+
+npm install   `--force` Vs `--legacy-peer-deps`
+https://stackoverflow.com/questions/66020820/npm-when-to-use-force-and-legacy-peer-deps
+https://www.copycat.dev/blog/yarn-vs-npm/#:~:text=the%20same%20purpose.-,Yarn%20vs%20npm%20Comparison%20of%20Performance,for%20updates%2C%20and%20resolving%20dependencies.
+
+npm install  --legacy-peer-deps`
+https://www.linkedin.com/pulse/npm-install-legacy-peer-deps-vs-force-shaharyar-saleem#:~:text=2%EF%B8%8F%E2%83%A3%20npm%20install%20%2D%2Dforce%3A&text=It%20instructs%20npm%20to%20forcefully,checks%20and%20forcibly%20install%20packages.
+
+
+Dependencies vs peerDependencies
+Dependencies: Libraries or modules that an NPM module needs in order to work in production. (Example: I recently built a pie chart mocking library that uses Chance.js to calculate random numbers within a specified range; Chance is therefore a dependency of my module.)
+
+peerDependencies: A peer dependency is a specific version or set of versions of a third-party software library that a module is designed to work with. They're similar in concept to the relationship between a browser extension and a browser. (Example: react-redux has two quite logical peerDependencies: react and redux.)
+
+The --legacy-peer-deps flag was introduced with v7 as a way to bypass peerDependency auto-installation; it tells NPM to ignore peer deps and proceed with the installation anyway. This is how things used to be with NPM v4 thru v6.
+
+peerDependencies: Dependendies of 3rd party software
+--legacy-peer-deps: tell it to ignore peer Dependendies (don't install if conflict?computer may have latest verision)
+--force: install peer dependency even if it conflicts
+
+new versions of npm => install the peer dependencies by default
 
 check local angular version in a project when no global angular is installed:
 2 ways
@@ -642,8 +673,6 @@ check local angular version in a project when no global angular is installed:
 add a line to scripts in package.json
 "scripts": {
    "test33": "ng --version"   --> ng here will use local angular version
-
-
 
 Angula Unit Testing
 karma.conf.cli.js - line 115
@@ -718,6 +747,7 @@ selector: 'element'      selects      <element ...>
 selector: '[attribute]'  selects e.g  <div element ...>
 selector: '.class1'       selects e.g  <div class="class1">
 
+https://fortawesome.com/ same folks as font-awesome
 
 https://angular.io/guide/cheatsheet
 @ViewChild(myPredicate) myChildComponent;     --> Cannot use @ViewChild inside directives? correct?
@@ -25301,6 +25331,10 @@ app/
 
 <------------------------------------------NX--------------------------------------------->
 
+Nx version 16 renamed Packages from @nrwl to @nx (ver 15 and lower use nrwl)
+https://nx.dev/recipes/other/rescope
+
+
 Suitable for large application to break into multiple smaller applications and make the smaller application's CI/CD faster and
 independent so different teams can work on different smaller applications
 https://www.bacancytechnology.com/blog/angular-micro-frontends-architecture
@@ -25653,6 +25687,27 @@ npx http-server . // (to serve the production bundle)
 nx uses a lint rule blocks to use libs directly. you have to export via index.ts
 ----------------------------------------------------------------
 
+1) To run tests
+npx nx test project-name --codeCoverage=true --silent
+
+2) To run E2E
+npx nx e2e project-name
+
+3) To lint
+npx nx lint (to lint all projects)
+npx nx lint project-name
+npx nx lint project-name  --format html --outputFile reports/project-name.html (to show output in html format)
+
+npx nx test [--options=xx]
+https://nx.dev/nx-api/jest/executors/jest
+
+Execute a single spec file
+npx nx test project-name --test-file path/specfile.spec.ts
+Example: npx nx test clients --test-file apps/specfile.spec.ts
+
+ng serve -o //(Opens the url in default browser.)
+https://docs.angular.lat/cli/serve
+
 npx create-nx-workspace acme --preset=apps
 cd acme
 npm install --save-dev @nx/angular
@@ -25701,6 +25756,10 @@ https://nx.dev/core-features/explore-graph
 
 nx affected:graph
 nx affected:dep-graph
+
+Nx test using Jest:
+Code Coverage: https://nx.dev/nx-api/jest/executors/jest#codecoverage
+Silent: https://nx.dev/nx-api/jest/executors/jest#silent
 
 Check plugin help
 
