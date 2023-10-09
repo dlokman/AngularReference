@@ -365,6 +365,15 @@ https://www.jstwister.com/post/unit-testing-beginners-guide-testing-functions
 https://www.jstwister.com/post/unit-testing-beginners-guide-spying-fake-timers
 https://www.jstwister.com/post/unit-testing-beginners-guide-mock-http-and-files
 
+https://jestjs.io/docs/api
+https://jestjs.io/docs/jest-object
+https://jestjs.io/docs/getting-started
+
+npx nx test [--options=xx]
+https://nx.dev/nx-api/jest/executors/jest
+
+To exclude a test from being executed, use xit() instead of it()
+
 Unit Testing for router: Using RouterTestingHarness instead of stubs and spies
 https://blog.angular.io/write-better-tests-without-router-mocks-stubs-bf5fc95c1c57
 
@@ -26101,3 +26110,32 @@ npx nx@15.x.x init --integrated
 
 Create Web Components
 https://lit.dev/
+
+
+*************************************Tailwind CSS***************************
+
+NX - How to add Tailwind to an Angular project:
+https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
