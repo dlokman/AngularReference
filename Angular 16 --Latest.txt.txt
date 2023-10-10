@@ -26356,7 +26356,6 @@ https://tailwindcss.com/docs/reusing-styles
 
 TODO:
 Showcase: https://tailwindcss.com/showcase
-Tailwind UI: https://tailwindui.com/?ref=top  (ready-to-use examples to choose from)
 
 Crosscheck
 *********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
