@@ -1859,6 +1859,8 @@ Direct access:
 /products/edit/2
 To avoid direct access issue with loading data before accessing it use a Resolver (pg 755) instead of Observables (pg 709)
 
+Resolver example: https://www.bacancytechnology.com/blog/angular-resolver
+
 Chp 24- Used routing in forms (list/add/edit) to handle navigation(passing data) between list component and add/edit component instead of using
 a shared service.
 
