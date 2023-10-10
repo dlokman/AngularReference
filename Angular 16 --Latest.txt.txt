@@ -746,6 +746,8 @@ Media Queries - CSS - Responsive
    .classa{}
 
 -----------------------------------------------------------------------------
+html details tag - collapse/expand text
+https://www.w3schools.com/tags/tag_details.asp
 
 <div title="Hello {{ponyName}}">
 is equivalent to
@@ -2976,6 +2978,26 @@ what is a polyfill: https://developer.mozilla.org/en-US/docs/Glossary/Polyfill
 
 
 -------------------------------------CSS Selectors--------------------------
+
+CSS Specificity
+https://web.dev/learn/css/specificity/
+
+CSS - Sass @extend Directive
+https://www.w3schools.com/sass/sass_extend.php
+
+The @extend directive lets you share a set of CSS properties from one selector to another.
+.button-basic  {
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-report  {
+  @extend .button-basic;
+  background-color: red;
+}
 
 overflow-wrap: break-word; (line break with e.g. space)
 word-break: break-all; (line break even if have no space)
@@ -26114,28 +26136,231 @@ https://lit.dev/
 
 *************************************Tailwind CSS***************************
 
+Tailwind Playground: https://play.tailwindcss.com/
+
+Tailwind. Style elements using pre-existing utility classes in html without writing CSS
+*********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
+Tailwind. Style elements using pre-existing utility classes in html without writing CSS
+
+Automatic Class Sorting using Prettier:
+https://tailwindcss.com/blog/automatic-class-sorting-with-prettier
+
+Utility classes reference:
+https://tailwindcss.com/docs/utility-first
+
+Pseudo-class Reference:
+https://tailwindcss.com/docs/hover-focus-and-other-states#pseudo-class-reference
+
+Modifiers Reference:
+https://tailwindcss.com/docs/hover-focus-and-other-states#quick-reference
+
+This approach allows us to implement a completely custom component design without writing a single line of custom CSS.
+
+Install Tailwind CSS with Angular: https://tailwindcss.com/docs/guides/angular
+
+SCSS is just a different syntax for using SASS.
+
+SCSS is a pre-processor
+https://techaffinity.com/blog/what-is-sass-css-preprocessor/#:~:text=Sass%20(Syntactically%20Awesome%20Style%20Sheets,don't%20exist%20in%20CSS.
+
+Tailwind is a PostCSS plugin.
+
+Preprocessor Vs PostCSS:
+https://medium.com/@ddprrt/deconfusing-pre-and-post-processing-d68e3bd078a3
+
+
+https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus
+For the best development experience, we highly recommended that you use PostCSS exclusively, and that you don’t use preprocessors like Sass or Less in your
+Tailwind projects.
+
+To use Tailwind with a preprocessing tool like Sass, Less, or Stylus, you’ll need to add an additional build step to your project that lets you run your
+preprocessed CSS through PostCSS. If you’re using Autoprefixer in your project, you already have something like this set up.
+
+To use Tailwind(postcss) with SCSS(preprocessor), follow: Ref: https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus (half page down)
+https://tailwindcss.com/docs/guides/angular OR
+https://tailwindcss.com/docs/installation/using-postcss
+
+Important: https://tailwindcss.com/docs/using-with-preprocessors#using-sass-less-or-stylus
+The most important thing to understand about using Tailwind with a preprocessor
+is that preprocessors like Sass(SCSS), Less, and Stylus run separately, before Tailwind.  <==================================
+This means that you can’t feed output from Tailwind’s theme() function into a Sass color function for example, because the theme() function isn’t actually
+evaluated until your Sass has been compiled to CSS and fed into PostCSS.
+
+Won’t work, Sass is processed first. Darken is SASS function.
+.alert {
+  background-color: darken(theme('colors.red.500'), 10%);
+}
+
+
+Github: https://github.com/tailwindlabs/tailwindcss
+
 NX - How to add Tailwind to an Angular project:
 https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
 
+Use Tailwind's @apply directive to extract repeated utility patterns into custom CSS classes just by copying
+and pasting the list of class names.
+
+.btn {
+  @apply text-base font-medium rounded-lg p-3;
+}
+
+It has  first-class CSS grid support
+https://tailwindcss.com/
+
+Tailwind UI:
+Tailwind UI is a collection of beautiful, fully responsive UI components, designed and developed by us, the
+creators of Tailwind CSS. It's got hundreds of ready-to-use examples to choose from, and is guaranteed to help
+you find the perfect starting point for what you want to build.
+
+CSS at-rule: https://css-tricks.com/the-at-rules-of-css/
+
+Example: @import rule
+@import 'global.css';
+The at-rule is a statement that provides CSS with instructions to perform or how to behave.
+
+This rule is inserted at the very top of the file and instructs the stylesheet to request and include an external CSS file as if the contents
+of that file were right where that line is.
+
+Example:
+Can include @import 'global.css'; on top of styles.scss and it'll include global.css contents where the import line is
+
+Tailwind CSS uses a lot of custom CSS at-rules like @tailwind, @apply, and @screen
+e.g:
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+Responsive strategy for different devices.
+
+
+Unknown at rule error for @tailwind base;
+https://byby.dev/at-rule-tailwind#:~:text=The%20unknown%20at%20rule%20%40tailwind%20warning%20is%20a%20common%20issue,styles%20into%20your%20CSS%20file.
+{
+  "scss.lint.unknownAtRules": "ignore"
+}
+
+PostCSS VS SASS
+PostCSS is a tool for transforming CSS with JS plugins. These plugins can support variables and mixins, transpile future CSS syntax, inline images,
+and more; Sass: Syntactically Awesome Style Sheets. Sass is an extension of CSS3, adding nested rules, variables, mixins, selector inheritance, and more.
+
+When using Tailwind with Sass, using !important with @apply requires you to use interpolation to compile properly: https://tailwindcss.com/docs/using-with-preprocessors#sass
+
+.alert {
+  @apply bg-red-500 #{!important};
+}
+
+Vendor Prefixes: https://tailwindcss.com/docs/browser-support#vendor-prefixes
+Autoprefixer, which is a PostCSS plugin that automatically adds any necessary vendor prefixes based on the browsers you tell it you need to support.
+
+
+Maintainability concerns: https://tailwindcss.com/docs/utility-first#maintainability-concerns
+The biggest maintainability concern when using a utility-first approach is managing commonly repeated utility combinations.
+This is easily solved by extracting components and partials, and using editor and language features like multi-cursor editing and simple loops.
+
+Below, 'hover' is a modifier
+<button class="bg-sky-500 hover:bg-sky-700 ...">
+
+Every utility class in Tailwind can be applied conditionally by adding a modifier to the beginning of the class name that
+describes the condition you want to target
+
+Tailwind includes modifiers for just about everything you’ll ever need, including:
+
+Pseudo-classes, like :hover, :focus, :first-child, and :required
+Pseudo-elements, like ::before, ::after, ::placeholder, and ::selection
+Media and feature queries, like responsive breakpoints, dark mode, and prefers-reduced-motion
+Attribute selectors, like [dir="rtl"] and [open]
+
+When stacking modifiers, they are applied from the inside-out, like nested function calls:
+https://tailwindcss.com/docs/hover-focus-and-other-states#ordering-stacked-modifiers
+
+for example changing the background color in dark mode, at the medium breakpoint, on hover:
+<button class="dark:md:hover:bg-fuchsia-600 ...">
+  Save changes
+</button>
+
+//focus applied seperately (3 times) for each state
+<button class="bg-violet-500 hover:bg-violet-600 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300 ...">
+  Save changes
+</button>
+
+Style an element when it is the first-child or last-child using the first and last modifiers:
+<li class="flex py-4 first:pt-0 last:pb-0">
 
 
 
+// These modifiers:
+'dark:group-hover:focus:opacity-100'
+
+// ...are applied like this:
+dark(groupHover(focus('opacity-100')))
 
 
+Form states validity
+
+Style form elements in different states using modifiers like required, invalid, and disabled:
+https://tailwindcss.com/docs/hover-focus-and-other-states#form-states
 
 
+Tailwind Breakpoints: https://tailwindcss.com/docs/responsive-design
+
+Breakpoint	Minimum width	CSS
+sm			640px			@media (min-width: 640px) { ... }
+md			768px			@media (min-width: 768px) { ... }
+lg			1024px			@media (min-width: 1024px) { ... }
+xl			1280px			@media (min-width: 1280px) { ... }
+2xl			1536px			@media (min-width: 1536px) { ... }
+
+------Bootstrap 4 min css--------
+
+mobile css... (<576px) Default - Portrait phone (top section) - xs
+
+@media (min-width: 576px) - Landscape phones  - sm
+css...
+
+@media (min-width: 768px) - Tablets  -md
+css...
+
+@media (min-width: 992px) - Desktops -lg
+css...
+
+@media (min-width: 1200px) - Large Desktops -xl
+css...
 
 
+xs - extra small phone
+sm - phone   (576px)
+md - tablet  (768 px)
+lg - desktop (992 px)
+xl - wide desktop (1200px)
+----------------------------------
+
+Targeting a breakpoint range
+If you’d like to apply a utility only when a specific breakpoint range is active, stack a responsive modifier like md with a max-* modifier to
+limit that style to a specific range:
+<div class="md:max-xl:flex">
+  <!-- ... -->
+</div>
+
+What this means is that unprefixed utilities (like uppercase) take effect on all screen sizes, while prefixed utilities (like md:uppercase)
+only take effect at the specified breakpoint and above.
+
+ unprefixed version (text-center) is applied to mobile as Tailwind is mobile first. sm prefix applies it to sm and above
+<!-- This will center text on mobile, and left align it on screens 640px and wider -->
+<div class="text-center sm:text-left"></div>
 
 
+Next:
+https://tailwindcss.com/docs/reusing-styles
 
 
+TODO:
+Showcase: https://tailwindcss.com/showcase
+Tailwind UI: https://tailwindui.com/?ref=top  (ready-to-use examples to choose from)
 
-
-
-
-
-
+Crosscheck
+*********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
+Tailwind. Style elements using pre-existing utility classes in html without writing CSS
 
 
 
