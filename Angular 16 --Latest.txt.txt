@@ -26140,6 +26140,11 @@ https://lit.dev/
 
 Tailwind Playground: https://play.tailwindcss.com/
 
+https://bloggie.io/@kinopyo/organize-your-css-in-the-tailwind-style-with-layer-directive
+@tailwind base includes the reset/normalized default styles and --tw-xxx CSS variables. Open https://play.tailwindcss.com/YpShH9YUHX?file=css and
+check out the full list at "Generated CSS" → "Base" tab.
+
+
 Tailwind. Style elements using pre-existing utility classes in html without writing CSS
 *********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
 Tailwind. Style elements using pre-existing utility classes in html without writing CSS
@@ -26199,12 +26204,23 @@ Github: https://github.com/tailwindlabs/tailwindcss
 NX - How to add Tailwind to an Angular project:
 https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
 
+Tailwind recommends to use @apply operator sparingly else Tailwinds benefits are not realized:
+
+If you’re going to use @apply, use it for very small, highly reusable things like buttons and form controls — and
+even then only if you’re not using a framework like React where a component would be a better choice.
+
+https://tailwindcss.com/docs/reusing-styles#avoiding-premature-abstraction
+
 Use Tailwind's @apply directive to extract repeated utility patterns into custom CSS classes just by copying
 and pasting the list of class names.
 
 .btn {
   @apply text-base font-medium rounded-lg p-3;
 }
+
+To re-use classes, try using @apply operator
+https://tailwindcss.com/docs/reusing-styles#extracting-classes-with-apply
+
 
 It has  first-class CSS grid support
 https://tailwindcss.com/
@@ -26352,8 +26368,238 @@ only take effect at the specified breakpoint and above.
 <div class="text-center sm:text-left"></div>
 
 
-Next:
-https://tailwindcss.com/docs/reusing-styles
+Customizing your theme: https://tailwindcss.com/docs/adding-custom-styles
+
+*****Using arbitrary values using sqaure brackets*****
+If you need to specify: top: 117px, use below. Reference: https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values
+
+<div class="top-[117px]">
+  <!-- ... -->
+</div>
+
+This works for everything in the framework, including things like background colors, font sizes, pseudo-element content, and more
+<div class="bg-[#bada55] text-[22px] before:content-['Festivus']">
+  <!-- ... -->
+</div>
+
+for CSS variable
+<div class="bg-[--my-color]">
+  <!-- ... -->
+</div>
+
+
+<!-- Will generate a font-size utility -->
+<div class="text-[22px]">...</div>
+
+<!-- Will generate a color utility -->
+<div class="text-[#bada55]">...</div>
+
+In these situations, you can “hint” the underlying type to Tailwind by adding a CSS data type before the value:
+<!-- Will generate a font-size utility -->
+<div class="text-[length:var(--my-var)]">...</div>
+
+<!-- Will generate a color utility -->
+<div class="text-[color:var(--my-var)]">...</div>
+
+For more power, you can also use the @layer directive to add styles to Tailwind’s ****base, components, and utilities layers*****:
+main.css
+
+@tailwind base;        <==== these are layers
+@tailwind components;  <==== these are layers
+@tailwind utilities;   <==== these are layers
+
+@layer components {
+  .my-custom-style {
+    /* ... */
+  }
+}
+
+In CSS, the order of the ****rules in your stylesheet**** decides which declaration wins when two selectors have the same specificity:
+If it targets the same property
+.btn {
+  background: blue;
+  /* ... */
+}
+
+.bg-black {
+  background: black;
+}
+
+If the property is different, then 2nd class will apply. card is in components and rounded-none is in utilities so utilities override
+<!-- Will look like a card, but with square corners -->
+<div class="card rounded-none">
+  <!-- ... -->
+</div>
+
+Here, button will be black since .bg-black comes after .btn in the CSS:
+<button class="bg-black btn">...</button>
+
+
+https://darkghosthunter.medium.com/tailwind-the-base-the-components-and-the-utilities-a81137c52534
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+1) The base layer is for things like reset rules or default styles applied to plain HTML elements. (see below)
+2) The components layer is for class-based styles that you want to be able to override with utilities.
+3) The utilities layer is for small, single-purpose classes that should always take precedence over any other styles.
+
+1)
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+  /* ... */
+}
+
+2) Use the components layer for any more complicated classes you want to add to your project that you’d still like to be able to override with utility classes.
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+  /* ... */
+}
+
+The components layer is also a good place to put custom styles for any third-party components you’re using:
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .select2-dropdown {
+    @apply rounded-b-lg shadow-md;
+  }
+  .select2-search {
+    @apply border border-gray-300 rounded;
+  }
+  .select2-results__group {
+    @apply text-lg font-bold text-gray-900;
+  }
+  /* ... */
+}
+
+// https://tailwindcss.com/docs/functions-and-directives
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-2xl;
+  }
+  h2 {
+    @apply text-xl;
+  }
+}
+
+@layer components {
+  .btn-blue {
+    @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+}
+
+Removing unused custom CSS: https://tailwindcss.com/docs/adding-custom-styles#removing-unused-custom-css
+Any custom styles you add to the base, components, or utilities layers will only be included in your compiled CSS if those styles are actually used in your HTML.
+
+Always retain custom CSS
+If you want to add some custom CSS that should always be included, add it to your stylesheet without using the @layer directive:
+
+@tailwind base;
+@tailwind components;
+
+/* This will always be included in your compiled CSS */
+.card {
+  /* ... */
+}
+
+@tailwind utilities;
+
+Make sure to put your custom styles where they need to go to get the precedence behavior you want. In the example above, we’ve added the .card class
+before @tailwind utilities to make sure utilities can still override it.
+
+Functions & Directives
+A reference for the custom functions and directives Tailwind exposes to your CSS.
+
+@tailwind base; <=== @tailwind is a directive. Ref: https://tailwindcss.com/docs/functions-and-directives
+Directives are custom Tailwind-specific at-rules you can use in your CSS that offer special functionality for Tailwind CSS projects.
+
+https://tailwindcss.com/docs/functions-and-directives#apply
+Any rules inlined with @apply will have !important removed by default to avoid specificity issues.
+
+.select2-results__group {
+  @apply text-lg font-bold text-gray-900;
+}
+
+/* Input */
+.foo {
+  color: blue !important;
+}
+
+.bar {
+  @apply foo;
+}
+
+/* Output */
+.foo {
+  color: blue !important;
+}
+
+.bar {
+  color: blue;
+}
+
+If you’d like to @apply an existing class and make it !important, simply add !important to the end of the declaration
+Note that if you’re using Sass/SCSS, you’ll need to use Sass’ interpolation feature to get this to work:
+.btn {
+  @apply font-bold py-2 px-4 rounded #{!important};
+}
+
+using CSS variables: https://tailwindcss.com/docs/using-with-preprocessors#variables
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 TODO:
