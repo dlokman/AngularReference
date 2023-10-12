@@ -12,6 +12,10 @@ git clone git@github.com:reponame
 git basic commands:
 https://docs.github.com/en/get-started/using-git/about-git
 
+Create a new branch in github:
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository
+
+
 TODO:
 ----------------------------------Certifications & Courses complete by Oct 1------------------------------------------
     1) Certified Scrum Developer (Scrum.org Certification) - Done
@@ -3434,6 +3438,12 @@ https://medium.com/dlt-labs-publication/package-json-vs-package-lock-json-c8d5de
 
 Difference between "~" and "^" in package.json
 https://vibhas1892.medium.com/difference-between-tilde-and-caret-in-package-json-76701e514445
+
+
+what is "dev": true in package-lock.json
+https://stackoverflow.com/questions/49809490/what-is-dev-true-in-package-lock-json-for#:~:text=So%20answering%20your%20first%20question,when%20running%20in%20production%20mode.
+So answering your first question, "dev": true in package-lock.json means this dependency won't be
+installed by npm install/npm ci when running in production mode.
 
 
 python cors setting
@@ -22785,6 +22795,7 @@ Alexander Mazakas Jun - Senior Associate
 
   package-lock.json needs to be checked in to source control. It describes the exact tree to recreate same
   local development environment as the ones that checked in code
+
 
   In earlier versions of Node.js, the package.json file did not provide a way to lock down the specific version of each dependency
   that a project was using. This meant that when a project was deployed or shared with others, there was a risk that different developers
