@@ -26138,12 +26138,27 @@ https://lit.dev/
 
 *************************************Tailwind CSS***************************
 
+Using Tailwind with Angular and NX:
+https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects#using-tailwind-css-with-angular-projects
+
+Tailwind Default Theme (color palette, type scale, fonts, breakpoints, border radius values, and more) <======================================
+https://github.com/tailwindlabs/tailwindcss/blob/master/stubs/config.full.js
+https://tailwindcss.com/docs/theme
+
 Tailwind Playground: https://play.tailwindcss.com/
+
+Tailwind Color Generator:
+https://uicolors.app/create
 
 https://bloggie.io/@kinopyo/organize-your-css-in-the-tailwind-style-with-layer-directive
 @tailwind base includes the reset/normalized default styles and --tw-xxx CSS variables. Open https://play.tailwindcss.com/YpShH9YUHX?file=css and
 check out the full list at "Generated CSS" → "Base" tab.
 
+Customizing  3rd party libraries CSS:
+https://tailwindcss.com/docs/content-configuration#working-with-third-party-libraries
+
+1REM=16px
+https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale
 
 Tailwind. Style elements using pre-existing utility classes in html without writing CSS
 *********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
@@ -26581,20 +26596,109 @@ Note that if you’re using Sass/SCSS, you’ll need to use Sass’ interpolatio
   @apply font-bold py-2 px-4 rounded #{!important};
 }
 
-using CSS variables: https://tailwindcss.com/docs/using-with-preprocessors#variables
+using CSS variables:
+https://cssf1.com/snippet/how-to-use-css-variables-in-tailwindcss
+https://tailwindcss.com/docs/using-with-preprocessors#variables
+https://tailwindcss.com/docs/customizing-colors#using-css-variables
+https://stackoverflow.com/questions/64872861/how-to-use-css-variables-with-tailwind-css  (2 individual replies: 1153 & 23.4k)
 
 
+Presets: https://tailwindcss.com/docs/configuration#presets
+The presets section allows you to specify your own custom base configuration instead of using Tailwind’s default base configuration.
+
+Adding !important: https://tailwindcss.com/docs/configuration#important-modifier
+Alternatively, you can make any utility important by adding a ! character to the beginning:
+<p class="font-bold !font-medium">
+  This will be medium even though bold comes later in the CSS.
+</p>
+This can be useful in rare situations where you need to increase specificity because you’re at war with some styles you don’t control.
+
+Don’t construct class names dynamically: https://tailwindcss.com/docs/content-configuration#dynamic-class-names
+<div class="text-{{ error ? 'red' : 'green' }}-600"></div>          <-- Do not
+<div class="{{ error ? 'text-red-600' : 'text-green-600' }}"></div> <-- Do
+
+To override default Tailwind color pallete use:
+theme: {
+    colors: {
+      'blue': '#1fb6ff'
+    },
+
+To add custom colors
+theme: {
+	extend: {
+      colors: {
 
 
+theme> spacing
+By default, these values are inherited by the padding, margin, width, height, maxHeight, flex-basis, gap, inset,
+space, translate, scrollMargin, scrollPadding, and textIndent core plugins.
+
+DEFault equates to rounded with no suffix. This is a common convention in Tailwind and is supported by all core plugins.
+https://tailwindcss.com/docs/theme#core-plugins
+
+module.exports = {
+  theme: {
+    borderRadius: {
+      'none': '0',
+      'sm': '.125rem',
+      DEFAULT: '.25rem',                <----------------
+      'lg': '.5rem',
+      'full': '9999px',
+    },
+  }
+}
+
+.rounded-none { border-radius: 0 }
+.rounded-sm   { border-radius: .125rem }
+.rounded      { border-radius: .25rem }   <----------------
+.rounded-lg   { border-radius: .5rem }
+.rounded-full { border-radius: 9999px }
+
+Arbitrary values
+https://tailwindcss.com/docs/customizing-colors#arbitrary-values
+If you need a one-off custom color in your project, consider using Tailwind’s arbitrary value notation to generate a class for that color on-demand
+instead of adding it to your theme:
+
+<button class="bg-[#1da1f2] text-white ...">
+  Share on Twitter
+</button>
+
+Plugins
+https://tailwindcss.com/docs/plugins
+Plugins let you register new styles for Tailwind to inject into the user’s stylesheet using JavaScript instead of CSS.
+
+Presets
+https://tailwindcss.com/docs/presets
+The presets option lets you specify a different configuration to use as your base, making it easy to package up a set of customizations that
+you’d like to reuse across projects.
+
+Presets are just regular Tailwind configuration objects, taking the exact same shape as the configuration you would add in your tailwind.config.js file.
+
+in a micro-front end angular project. each angular app's tailwind.config.js can have as a preset base (at root level) tailwind.config.js ,
+so it can have all the configurations there. Individual project configuration(tailwind.config.js) can inherit from Base Or Solution level configuraton (tailwind.config.js)
+
+<div class="box-border h-32 w-32 p-4 border-4 ...">
+  <!-- ... -->
+</div>
+
+h-32 = 128px  https://tailwindcss.com/docs/height
+w-32 = 128px  https://tailwindcss.com/docs/width
+p-4 =   16px  https://tailwindcss.com/docs/padding
+border-4 = 4px https://tailwindcss.com/docs/border-width
 
 
+grid	display: grid; <== CSS Grid. https://tailwindcss.com/docs/display
+flex	display: flex; <= flexbox
 
+class="grid"
+class="flex"
 
+Using negative values  							<--------------------------------------------------------------------------
+https://tailwindcss.com/docs/top-right-bottom-left#using-negative-values
 
-
-
-
-
+<div class="relative h-32 w-32 ...">
+  <div class="absolute h-14 w-14 -left-4 -top-4 ..."></div>
+</div>
 
 
 
