@@ -15,6 +15,8 @@ https://docs.github.com/en/get-started/using-git/about-git
 Create a new branch in github:
 https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository
 
+Create a PR in github:
+https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 
 TODO:
 ----------------------------------Certifications & Courses complete by Oct 1------------------------------------------
@@ -25375,6 +25377,8 @@ app/
 
 <------------------------------------------NX--------------------------------------------->
 
+Setting up a Devops pipeline with NX: https://christianlydemann.com/setting-up-a-devops-pipeline-with-nx/
+
 Nx version 16 renamed Packages from @nrwl to @nx (ver 15 and lower use nrwl)
 https://nx.dev/recipes/other/rescope
 
@@ -26711,8 +26715,25 @@ https://tailwindcss.com/docs/top-right-bottom-left#using-negative-values
   <div class="absolute h-14 w-14 -left-4 -top-4 ..."></div>
 </div>
 
+Some apply to both flex and grid items whereas soe apply to only flex. check docs
 
+Flex: https://tailwindcss.com/docs/justify-content
+Justify Content: Justify Content along main axis (e.g x axis)
+Justify Items:   Justify Items along main axis  (e.g x axis)
+Justify Self:    Justify Self Item along main axis  (e.g x axis)
 
+Align Content: Justify Content along cross axis (e.g y axis)
+Align Items:   Justify Items along cross axis  (e.g y axis)
+Align Self:    Justify Self Item along cross axis  (e.g y axis)
+
+**To Justify and Align at the same time**
+Place Content:
+Place Items:
+Place Self:
+
+border-indigo-600
+text-indigo-600
+bg-indigo-600
 
 
 
