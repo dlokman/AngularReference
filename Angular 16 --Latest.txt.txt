@@ -366,6 +366,11 @@ You can use provideRouter instead of routerModule.ForRoot or routerModule.ForChi
 
 Introduction of functional guards using inject() instead of class based guards
 
+E2E Testing:
+NX=> Playwright
+https://blog.nrwl.io/introducing-playwright-support-for-nx-d8108ee11d46
+https://www.youtube.com/watch?v=k1U3PuBrZFQ
+
 Jest Unit Testing:
 https://www.jstwister.com/post/unit-testing-beginners-guide-testing-functions
 https://www.jstwister.com/post/unit-testing-beginners-guide-spying-fake-timers
@@ -2987,6 +2992,12 @@ what is a polyfill: https://developer.mozilla.org/en-US/docs/Glossary/Polyfill
 
 -------------------------------------CSS Selectors--------------------------
 
+:root  => selects the html element. Only that its specificity is higher.
+The :root CSS pseudo-class matches the root element of a tree representing the document. In HTML, :root represents the
+<html> element and is identical to the selector html, except that its specificity is higher.
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/:root
+
 CSS Specificity
 https://web.dev/learn/css/specificity/
 
@@ -3389,6 +3400,9 @@ npm install -g @angular/cli@14.2.7
 
 or install latest
 npm install -g @angular/cli@latest
+
+npm install --save lodash@latest
+npm install --save-dev @types/lodash@latest
 
 Verify installation by running the following at the dos command line
 ng v (to verify Angular Cli version)
@@ -25302,9 +25316,16 @@ this will add package.json and node_modules
 to create a new project using this local angular version (and not global angular version) use ng from node_modules
 node_modules/.bin/ng new ng-14.2 (this will create a new angular project using 14.2)
 
-to run it execute node_modules/.bin/ng serve
+to run it execute 'node_modules/.bin/ng serve'
 
+package.json
+  "scripts": {
+    "version": "ng version",   // to run ng command using the locally installed angular
+	....
+  }
 
+  if we don't have angular installed globally on your machine then running 'npm run version' will use local angular
+  install in node_modules i.e. it will run 'node_modules/.bin/ng version'
 
 or install latest
 npm install -g @angular/cli@latest
@@ -25733,6 +25754,20 @@ cd dist/production
 npx http-server . // (to serve the production bundle)
 
 nx uses a lint rule blocks to use libs directly. you have to export via index.ts
+
+
+Reference video: https://www.youtube.com/watch?v=JkcaGzhRjkc&t=8s (18 min)
+"build:appName": "nx build appName"
+cd dist\apps\appName
+npx http-server .
+  Available on:
+   http://10.35.120.164:8080
+   http://192.168.1.249:8080
+   http://127.0.0.1:8080
+   Hit CTRL-C to stop the server
+
+navigate to localhost:8080 to run UI (modify index.html to have base href='/'
+
 ----------------------------------------------------------------
 
 1) To run tests
@@ -26152,6 +26187,9 @@ https://lit.dev/
 
 
 *************************************Tailwind CSS***************************
+
+*********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
+Tailwind. Style elements using pre-existing utility classes in html without writing CSS
 
 Using Tailwind with Angular and NX:
 https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects#using-tailwind-css-with-angular-projects
@@ -26738,12 +26776,17 @@ bg-indigo-600
 
 
 
-TODO:
-Showcase: https://tailwindcss.com/showcase
+DevExtreme Templates:
+Angular DevExtreme
+https://js.devexpress.com/Angular/Documentation/21_1/Guide/Angular_Components/DevExtreme_Angular_Components/
 
-Crosscheck
-*********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
-Tailwind. Style elements using pre-existing utility classes in html without writing CSS
+Angular Demos: https://js.devexpress.com/Angular/Demos/WidgetsGallery/
+Angular Documentation: https://js.devexpress.com/Angular/Documentation/Guide/Angular_Components/DevExtreme_Angular_Components/
+
+https://js.devexpress.com/Angular/Documentation/21_1/Guide/UI_Components/Common/Templates/
+https://js.devexpress.com/Angular/Documentation/21_1/ApiReference/UI_Components/Markup_Components/dxTemplate/
+
+
 
 
 
