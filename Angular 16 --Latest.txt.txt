@@ -1,3 +1,45 @@
+to run dist build
+cd dist/production
+npx http-server . // (to serve the production bundle)
+
+To troubleshoot git:
+Ctrl+Shift+P and then type 'set log level' and then select 'debug'.
+then execute the git command and see the 'Output window for Git' for commands details
+
+.gitkeep is to enable checking in empty folders
+
+.vscode folder
+  extensions.json  (checked in to source control)
+  settings.json    (checked in to source control. Workspace settings)
+
+Create Angular 15 project when you have Angular 16 installed globally
+npx -p @angular/cli@15.2.0 ng new Angular12App
+https://kumargandhi.in/2021/09/29/create-angular-app-in-a-specific-version/#:~:text=First%20lets%20install%20npx%20globally.&text=Now%20we%20execute%20npx%20command,%5Bname%20of%20the%20project%5D.
+
+---------------------------------------FontAwesome in Angular 15-----------------------------------------
+https://fontawesome.com/
+https://fontawesome.com/docs/web/use-with/angular
+https://www.npmjs.com/package/@fortawesome/angular-fontawesome  (see Compatibility table)
+
+npm install @fortawesome/angular-fontawesome@0.12.0
+npm install @fortawesome/fontawesome-svg-core@6.2.0
+npm install @fortawesome/free-brands-svg-icons@6.2.0
+npm install @fortawesome/free-regular-svg-icons@6.2.0
+npm install @fortawesome/free-solid-svg-icons@6.2.0
+
+https://github.com/FortAwesome/angular-fontawesome  (guide how to use it)
+
+Features:
+https://github.com/FortAwesome/angular-fontawesome/blob/master/docs/usage.md
+https://github.com/FortAwesome/angular-fontawesome/blob/master/docs/usage/features.md
+
+------------------------------------------------------------------------------------------------------------
+
+C:\Users\dalokman\AppData\Roaming\Code\User\settings.json => User settings. Global settings.
+
+Workspace settings overrides User settings.
+https://code.visualstudio.com/docs/getstarted/settings
+
 Reference Commands:
 git config --list => to list all git config settings including username and email
 
@@ -187,6 +229,9 @@ TODO:
 
 
 ------------------------------------------------------------------------------------------------------------
+
+the enableProdMode() function call has been removed in main.ts.
+https://blog.ninja-squad.com/2022/11/16/angular-cli-15.0/
 
 NPM Trends: https://npmtrends.com/@ngrx/store-vs-@ngxs/store
 
@@ -694,6 +739,15 @@ add a line to scripts in package.json
 "scripts": {
    "test33": "ng --version"   --> ng here will use local angular version
 
+To inform node version that is compatible with the project. Update package.json and include an engines
+section e.g.:
+
+"engines": {
+    "node": ">=20.7.0",
+    "npm": ">=10.1.0"
+  },
+
+
 Angula Unit Testing
 karma.conf.cli.js - line 115
 browsers: ['Chrome'],
@@ -905,6 +959,12 @@ if same team works on both UI & Api, can keep together. Jordan has seen both way
 Angular 15 removed following files. not because not needed but to simplify it for new developers starting out on Angular.
 As testing or environment files are needed, they can be added later. also in the future you can use schematics to add
 environment files: https://levelup.gitconnected.com/angular-15-new-must-know-features-ae392a2baf2d
+
+Eslint disable next line rule
+
+// eslint-disable-next-line rule-name
+// eslint-disable-next-line no-console
+https://eslint.org/docs/latest/rules/no-console
 
 error: eslint angular cannot read file tsconfig.json
 
@@ -1330,6 +1390,9 @@ ng serve --port 3000 --open
 angular cli- dev, qa, prod:
 https://theinfogrid.com/tech/developers/angular/environment-variables-angular/
 
+Build configuration in angular.json or project.json
+Full Article: https://angular.io/guide/workspace-config
+Assets configuration: https://angular.io/guide/workspace-config#assets-configuration
 
 ******Ref: Build and Serve Configuration in angular.json: https://www.youtube.com/watch?v=D97Qhk8n-lU***********************
 
@@ -18010,6 +18073,9 @@ Changes:
 .gitignore file informs all files not included in the git repository
 A gitignore file specifies intentionally untracked files that Git should ignore. Files already tracked by Git are not affected; see the NOTES below for details
 
+Exclude all files under .vscode folder except settings.json
+.vscode/*
+!.vscode/settings.json
 
 Pull  (pull code   down from  remote git repo   to    local git repo) - before start working...
 Push  (push code   to         remote git repo   from  local git repo)
@@ -25341,6 +25407,7 @@ nvm use 10.23.0  (to switch to a different node version)
 nvm list (to list all node versions)
 
 
+
 MonoRepo:
 1 Repo can have many projects.
 For example, a monorepo can contain a directory for a web app project, a directory for a mobile app project, and a directory for a server app project. The projects can be unrelated and can be completely distinct.
@@ -25396,7 +25463,18 @@ app/
  Or
  feature specific folders
 
+lcov viewer- nx test
+https://lcov-viewer.netlify.app/
+
+difference between tsconfig.json and tsconfig.app.json
+tsconfig.json => typescript compiler options for the whole project
+tsconfig.app.json => typescript compiler options for the angular application
 <------------------------------------------NX--------------------------------------------->
+
+Nx cache is stored in  node_modules/.cache/nx by default
+https://nx.dev/concepts/how-caching-works#customizing-the-cache-location
+
+Angular cli cache is stored in .angular/cache folder
 
 Setting up a Devops pipeline with NX: https://christianlydemann.com/setting-up-a-devops-pipeline-with-nx/
 
@@ -26184,6 +26262,34 @@ npx nx@15.x.x init --integrated
 
 Create Web Components
 https://lit.dev/
+
+
+When using Nx, you can either
+1) let Nx decorate the Angular CLI to improve the developer experience **OR**
+2) use the Nx CLI instead.
+All the points below will apply in the same way.
+https://blog.nrwl.io/nx-is-modern-angular-bda6cf10746d
+
+The decorate-angular-cli.js file is used to point the Angular CLI to the Nx CLI. This allows you to use Nx commands instead of ng commands, such as nx build instead of ng build.
+To use the decorate-angular-cli.js file, you first need to install it. You can do this by running the following command:
+
+npm install -g decorate-angular-cli.js
+
+Once you have installed the decorate-angular-cli.js file, you can use it by running the following command:
+
+node ./decorate-angular-cli.js
+
+This will decorate the Angular CLI and point it to the Nx CLI. You can then use Nx commands instead of ng commands.
+For example, to build your application, you would run the following command:
+
+nx build
+
+Instead of running the following command:
+
+ng build
+
+The decorate-angular-cli.js file is a useful tool for anyone who wants to use Nx to manage their Angular applications. It makes it easy to use Nx commands without having to change your existing Angular code.
+
 
 
 *************************************Tailwind CSS***************************
