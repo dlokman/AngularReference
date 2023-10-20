@@ -25885,6 +25885,10 @@ nx g @nx/angular:library cart-main --directory=libs/cart-main
 nx g @nx/angular:library shop-main --directory=libs/shop-main
 nx g @nx/angular:library shared-components --directory=libs/shared-components
 
+//will add prefix to component selectors
+nx g @nx/angular:library --name=ao-shared --directory=libs/ao-shared --prefix=ao --projectNameAndRootFormat=as-provided
+nx g @nx/angular:component ao-test-cmp --project=ao-shared-prefix
+
 // nx g @nx/angular:lib shop-main --directory=libs/shop-main
 
 nx g @nx/angular:pipe formatx --project=ui-formatters --export
