@@ -25879,6 +25879,7 @@ nx g @nx/angular:remote about --host=host --directory=apps/about
 nx serve host --open   (runs only host in development mode)
 nx serve host --open --devRemotes="shop,cart"  (runs shop and cart in development mode as well apart from running host in dev mode)
 
+execute with --dry-run option first
 
 nx g @nx/angular:library about-main --directory=libs/about-main
 nx g @nx/angular:library cart-main --directory=libs/cart-main
