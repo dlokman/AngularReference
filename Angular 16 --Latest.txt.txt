@@ -2,7 +2,49 @@ to run dist build
 cd dist/production
 npx http-server . // (to serve the production bundle)
 
+cd dist/production/apps/appname
+npx http-server . // (to serve the production bundle)
+
 nx dep-graph (draws graph)
+
+Git branching and merging: https://www.varonis.com/blog/git-branching
+Git merge:
+https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
+https://phoenixnap.com/kb/git-merge-master-into-branch
+https://ruslan.rocks/posts/git-merge-master-into-feature-branch
+
+to merge main branch to feature branch, before creating a PR (to get latest changes from main branch)
+$ git checkout main
+$ git pull
+$ git checkout feature-branch
+$ git merge main
+$ git push
+
+Before creating a PR, merge main branch to your feature branch to get latest changes
+https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
+https://phoenixnap.com/kb/git-merge-master-into-branch
+https://ruslan.rocks/posts/git-merge-master-into-feature-branch
+
+Vscode:
+refresh "main" branch under "remotes" in VS code
+switch to "main" branch under "branches" in VS code (git checkout main)
+refresh "main" branch under "branches" in VS code
+git status (On branch main. Your branch is up to date with 'origin/main'.)
+
+switch to feature-branch (git checkout feature-branch)
+git merge main                     (merges main branch to feature-branch)
+git push
+
+
+Command
+to merge main branch to feature branch, before creating a PR (to get latest changes from main branch)
+git checkout main
+git pull
+
+git checkout feature-branch
+git merge main
+git push
+
 
 To troubleshoot git:
 Ctrl+Shift+P and then type 'set log level' and then select 'debug'.
@@ -230,7 +272,99 @@ TODO:
    Open All VsCode Projects
 
 
-------------------------------------------------------------------------------------------------------------
+--------------------------------------------Angular folder hierarchy best practice----------------------------------------------------------------
+
+Angular folder hierarchy - best practices
+
+https://angular.io/guide/styleguide#!#04-11
+https://medium.com/@shijin_nath/angular-right-file-structure-and-best-practices-that-help-to-scale-2020-52ce8d967df5
+https://www.thirdrocktechkno.com/blog/angular-architecture-best-practices/
+https://github.com/mathisGarberg/angular-folder-structure/tree/master/src/app/modules
+
+
+//1) Angular Project based Hierarchy
+
+      src
+        app
+           core     	     (1. core module. only singleton items i.e. instantiated only once. No dependency on Shared Module)
+			  services       (common and specific)
+			  guards         //resolve, canActivate, canDeactivate, canLoad
+			  app-settings
+			  interceptor
+			  error-handler (unhandled exceptions)
+              core.module.ts
+           layout            (centered, custom page layout)
+           models
+              	classes
+                enums
+                interfaces
+	   	   pages             (2. pages module. All folders under partials in AdvisoryToolsWeb)
+                base         (base page component. other pages  can inherit from it to have common functionality)
+                page1
+				page2
+                pages.module.ts   (will import shared module)
+           shared                 (3. shared module. shared in feemanagement pages only)
+	            components        (put navbar, footer, banner here)
+                directives
+                pipes
+                shared.module.ts (includes devextreme components)
+           app-routing.module
+           app.module.ts        (will import pages, core and devextreme module)
+
+Pages, Shared and Core Modules are imported in App Module
+Shared Module are imported in Pages Module
+DevExtreme Module is imported in Shared Module  (common components)
+
+Do not import shared module to core module(minimal. directly import 3rd part dependencies and other required to core.module)
+
+
+//2) NX Project Based Hierarchy
+apps
+   angularApp1
+      src
+        app
+           models
+              	classes
+                enums
+                interfaces
+		   services          (feemanagement specific services)
+		   layout            (centered, custom page layout)
+	   	   pages             (2. pages module. All folders under partials in AdvisoryToolsWeb)
+                base         (base page component. other pages  can inherit from it to have common functionality)
+                page1
+				page2
+                pages.module.ts   (will import shared module)
+           shared                 (3. shared module. shared in feemanagement pages only. Global shared should go to libs\cx-shared))
+	            components
+                directives
+                pipes
+                shared.module.ts ((devextreme components are in ao-shared module))
+           app-routing.module    (has routing for feemanagement)
+           app.module.ts         (will import pages and devextreme module)
+
+   angularApp2
+
+libs
+  cx-shared
+     src
+        lib  (shared among All Angular apps above e.g angularApp1 & angularApp2)
+           components  (navbar, footer, banner)
+           directives
+           pipes
+           services
+	          common  (rest service, common service, app-settings service)
+              guards   //resolve, canActivate, canDeactivate, canLoad
+              interceptor
+	      	  error-handler (unhandled exceptions)
+           cx-shared.module.ts  (Should have all 3rd party DevExtreme controls imported and exported)
+
+Pages Module, CXShared Module are imported in App Module (Try checking if can avoid importing CXShared to App Module)
+Shared Module and CXShared Module  are imported in Pages Module
+DevExtreme Module is imported in CXSharedModule  (common components)
+
+
+--------------------------------------------Angular folder hierarchy best practice End---------------------------------------
+
 
 the enableProdMode() function call has been removed in main.ts.
 https://blog.ninja-squad.com/2022/11/16/angular-cli-15.0/
@@ -936,7 +1070,8 @@ git status
 to merge
 make sure you are on feature branch via git status
 switch to develop and get latest
-git merge develop (merges develop to your branch)
+switch back to  feature branch
+git merge develop (merges develop to your feature branch)
 
 
 Writing Browser Specific CSS. below example
@@ -1368,6 +1503,8 @@ Angular Style Guide: https://angular.io/guide/styleguide
 Frequently Used Modules: https://angular.io/guide/frequent-ngmodules
 BrowserModule imports CommonModule, which contributes many common directives such as ngIf and ngFor.
 Singleton services: https://angular.io/guide/singleton-services
+Defining providers in the Angular module means that all dependencies for a token within the
+application will be resolved using the same object. PG 534
 
 Angular Error Reference: https://angular.io/errors/NG0100
 Angular CheatSheet: https://angular.io/guide/cheatsheet
@@ -1937,6 +2074,18 @@ To avoid direct access issue with loading data before accessing it use a Resolve
 
 Resolver example: https://www.bacancytechnology.com/blog/angular-resolver
 
+Resolver
+resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product | undefined> {
+
+The first argument is an ActivatedRouteSnapshot object, which describes the route that is being ****navigated to*** using the properties
+described in Chapter 24.
+
+The second argument is a RouterStateSnapshot object, which describes the ***current route*** through a single property called url.
+
+CanActivate (parameters is same as Resolvers above)
+canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> | boolean {
+
+
 Chp 24- Used routing in forms (list/add/edit) to handle navigation(passing data) between list component and add/edit component instead of using
 a shared service.
 
@@ -2063,6 +2212,7 @@ Component Interaction
 7) Parent and children communicate using a service
 8) Components communicate via routing (passing params)
 
+@Injectable() implies class is intended for use as a Service. pg 491
 
 Using the @Injectable() providedIn property is preferable to using the @NgModule() providers array. With @Injectable() providedIn,
 optimization tools can perform tree-shaking, which removes services that your application isn't using. This results in smaller
@@ -3329,11 +3479,65 @@ Delete old npm folders  npm or npm-cache  from C:\Users\Dan\AppData\Roaming or C
 
 install node js from website= LTS version
 
+***************Node Js Nodejs Fresh Install*********************
+
+******Check Admin priviliges to install new node. Run msi and see any pop-up******
+
+1) Install Node 20.7.0 on laptop
+
+
+
+Completely uninstall node and npm and then install Node 20.7.0
+https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows
+
+https://nodejs.org/download/release/v20.7.0/
+Double click on node-v20.7.0-x64.msi
+
+install node js
+
+**Leave the checkbock unchecked**
+
+2) Install NX globally on laptop
+
+npm install --global nx@16.9.0
+
+3) Create new branch from main - Github
+
+Switch to that branch
+
+4) Run npm install
+
+rimraf node_modules  (delete node_modules)
+npm cache clean --force
+npm cache verify
+npm install
+
+if error or package-lock.json update, try installing again by deleting node_modules.
+else completely uninstall node and npm: https://reactgo.com/uninstall-node-npm-from-windows/
+and try installing fresh
+
+5) Run UI locally
+
+
+Environment Variable:
+C:\Users\dalokman\AppData\Roaming\npm
+
+System Variable
+C:\Program Files\nodejs\
+
+nx --version
+16.9.0
+
 node -v
-v16.17.0
+v20.7.0
 
 npm -v
-8.15.0
+10.1.0
+
+node -v
+npm -v
+ng v or ng version
+
 
 ng v or ng version   <---
 
@@ -3447,7 +3651,14 @@ Package                      Version
 Prepare Angular Environment on your local computer
 
 How to completely uninstall Node.js and npm from Windows
+https://stackoverflow.com/questions/20711240/how-to-completely-remove-node-js-from-windows
 https://reactgo.com/uninstall-node-npm-from-windows/
+
+Environment Variable:
+C:\Users\dalokman\AppData\Roaming\npm
+
+System Variable
+C:\Program Files\nodejs\
 
 
 1)	Install pre-requisite software on your local computer e.g. Git for windows
@@ -14406,6 +14617,7 @@ the properties on Service 'object' (injected via Dependency Injection in constru
 Put keyValueDiffers on the object to watch all its properties. on ngDocheck, check if the service object changed, then recalculate
 the Discount Amount.
 
+You can use KeyValueDiffers to monitor changes in objects or arrays. pg 500 appress
 
 services can declare dependencies on other services
 
@@ -16918,6 +17130,30 @@ ActivatedRoute: https://angular.io/guide/router#activatedroute-the-one-stop-shop
 Difference between QueryParam (/products?sort=rating&color=red) and RouteParams (/product/2)
 https://www.tektutorialshub.com/angular/angular-passing-optional-query-parameters-to-route/
 
+Route parameters determine the route => /product/:id
+Query parameters can be used to for instance sort, page etc => /products?sort=rating&color=red
+Query params (or Query Parameters) are key-value pairs that appear to the right of the ? in a URL.
+A “?” is used to attach query parameters to the end of the URL.
+
+pg 711- apress
+Optional Parameters (name and price): http://localhost:4200/form/edit/2;name=Lifejacket;price=48.95
+<button class="btn btn-warning btn-sm" (click)="editProduct(item.id)"
+  [routerLink]="['/form', 'edit', item.id,
+   {name: item.name,  price: item.price}]">
+Edit
+</button>
+
+{ path: "does", redirectTo: "/form/create", pathMatch: "prefix" },
+The redirectTo property is used to specify the URL that the browser will be redirected to. When
+defining redirections, the pathMatch property must also be specified
+
+pathMatch
+This property tells Angular how to match the current URL to the path property.
+There are two allowed values: full, which requires the path value to completely
+match the URL, and prefix, which allows the path value to match the URL, even
+if the URL contains additional segments that are not part of the path value. This
+property is required when using the redirectTo property, as demonstrated in
+
 
 Retrieving query params from url:
 https://angular.io/guide/router#getting-route-information
@@ -19234,6 +19470,16 @@ this.todoService.getTodos() returns Promise<Todo[]>
 Convert Observable to Promise
 toPromise
 
+pg 558
+Services in Feature Module are available application wide:
+When you use providers in a feature module, they
+are registered with the root module’s injector, which means they are available throughout the application,
+which is exactly what is required for the data model in the example application
+
+A common mistake is to assume that services defined in a module are accessible only to the classes
+within that module. There is no module scope in Angular. Providers defined by a feature module are used as
+though they were defined by the root module. Local providers defined by directives and components in the
+feature module are available to their view and content children even if they are defined in other modules.
 
 exhaustMap (discard others until inner one completes)
 https://www.youtube.com/watch?v=nh13_aPRQ0Q
@@ -22689,6 +22935,19 @@ https://angular.io/tutorial/toh-pt3
   length: 10
 }
 
+WithCredentials: When true, this property is used to include ***authentication cookies*** when making
+cross-site requests. This setting must be used only with servers that include the
+Access-Control-Allow-Credentials header in responses, as part of the Cross-Origin
+Resource Sharing (CORS) specification. See the “Making Cross-Origin Requests”
+section for details. pg 680 apress
+
+When WithCredentials is true, the browser will include authentication
+cookies, and headers from the origin will be included in the request to the server. pg 681
+
+HTTP requests made using the Angular HttpClient class will automatically use Cross-Origin Resource
+Sharing to send requests to different origins.
+For Angular developers, CORs should work out of the box. Making cross origin requests as long as the
+server supports CORS pg 681
 
 fact
 :
@@ -24153,7 +24412,7 @@ this.service.getsomething().then(
    },
   (error: IhttpResponse) => {
     console.log(error);
-  }
+  })
 
 Bootstrap collapse/expand
 
@@ -25891,10 +26150,13 @@ nx g @nx/angular:library shared-components --directory=libs/shared-components
 //will add prefix to component selectors. execute with --dry-run first (confirm folder hierarchy, scss. Tailwind should use application properties)
 nx g @nx/angular:library --name=ao-shared --directory=libs/ao-shared --prefix=ao --projectNameAndRootFormat=as-provided
 nx g @nx/angular:component ao-test-cmp --project=ao-shared-prefix
+nx g @nx/angular:component ao-test-cmp --project=ao-shared-prefix  --dry-run
 
 for nx 15 and below. execute with --dry-run first
 npx nx g @nrwl/angular:library --name=ao-shared --directory=libs --prefix=ao
 npx nx g @nrwl/angular:component ao-test-cmp --project=ao-shared
+
+npx nx g @nrwl/angular:component ao-test-cmp --project=ao-shared --dry-run
 
 // nx g @nx/angular:lib shop-main --directory=libs/shop-main
 
