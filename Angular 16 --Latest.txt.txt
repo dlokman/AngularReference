@@ -25,6 +25,10 @@ https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
 https://phoenixnap.com/kb/git-merge-master-into-branch
 https://ruslan.rocks/posts/git-merge-master-into-feature-branch
 
+Github CodeOwners file
+Who will be requested to approve PR by default.
+https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
 Vscode:
 refresh "main" branch under "remotes" in VS code
 switch to "main" branch under "branches" in VS code (git checkout main)
@@ -64,6 +68,12 @@ https://kumargandhi.in/2021/09/29/create-angular-app-in-a-specific-version/#:~:t
 https://fontawesome.com/
 https://fontawesome.com/docs/web/use-with/angular
 https://www.npmjs.com/package/@fortawesome/angular-fontawesome  (see Compatibility table)
+
+Font Awesome Icons:
+https://fontawesome.com/search?o=r&m=free
+
+Font Awesome Angular Features:
+https://github.com/FortAwesome/angular-fontawesome/blob/master/docs/usage/features.md
 
 npm install @fortawesome/angular-fontawesome@0.12.0
 npm install @fortawesome/fontawesome-svg-core@6.2.0
@@ -904,6 +914,8 @@ tasklist (list all processes)
 netstat -aon | findstr 8080  (find out who is using port 8080 where we are running Node Api)
 taskkill /F /PID 30080   (kill that process)
 
+netstat -aon | findstr 8000
+
 git status
 git merge develop (merge develop branch to existing selected branch)
 
@@ -1405,6 +1417,7 @@ def hello():
 
 Vs code open folder: C:\Users\Danial.Lokman\source\cs-repo\ConceptSelection_UI\src>
 
+To stop angular from reloading a website on code change
 ng serve --port 3000 --open --live-reload false
 
 --live-reload=false
@@ -4122,6 +4135,9 @@ export class PtData {
 	"loadJson":true
 }
 */
+
+DevExtreme Angular Template:
+https://github.com/DevExpress/devextreme-angular-template
 
 --------------------------------------------------------------ScrollBar-----------------------------------
 
@@ -26158,6 +26174,14 @@ npx nx g @nrwl/angular:component ao-test-cmp --project=ao-shared
 
 npx nx g @nrwl/angular:component ao-test-cmp --project=ao-shared --dry-run
 
+
+nrwl angular generators 15.8.6: https://github.com/nrwl/nx/tree/15.8.6/packages/angular/src/generators
+nrwl github: https://github.com/nrwl/nx/blob/15.8.6/packages/angular/src/generators/component/schema.json
+
+have to use path and not directory e.g:
+npx nx g @nrwl/angular:component --name=xxx --project=projectname --path=apps/directorypath --export   --dry-run
+
+
 // nx g @nx/angular:lib shop-main --directory=libs/shop-main
 
 nx g @nx/angular:pipe formatx --project=ui-formatters --export
@@ -26296,6 +26320,12 @@ Environment Variables
 How to add Tailwind:
 https://nx.dev/recipes/angular/using-tailwind-css-with-angular-projects
 
+
+Vs Settnings: Use the files.associations setting to tell VS Code to always open .css files in Tailwind CSS mode.
+Else @apply will show a warning
+"files.associations": {
+    "*.scss": "tailwindcss"
+}
 
 Build once, deploy everywhere:  <-----------------------
 Single Build is pushed to multiple environments such as Staging & Production<-----------------------
@@ -26834,6 +26864,8 @@ for CSS variable
   <!-- ... -->
 </div>
 
+CSS Variables in Html
+[height]="'var(--some-height)'"
 
 <!-- Will generate a font-size utility -->
 <div class="text-[22px]">...</div>
