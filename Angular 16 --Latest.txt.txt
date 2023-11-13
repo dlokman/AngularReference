@@ -114,6 +114,12 @@ https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/propos
 Create a PR in github:
 https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request
 
+
+parsing sessionstorage sessionItem value. item will be null or an object
+https://stackoverflow.com/questions/46915002/argument-of-type-string-null-is-not-assignable-to-parameter-of-type-string
+const sessionItemJson = sessionStorage.getItem('sessionItem');
+const item = sessionItemJson !== null ? JSON.parse(sessionItemJson) : null;
+
 TODO:
 ----------------------------------Certifications & Courses complete by Oct 1------------------------------------------
     1) Certified Scrum Developer (Scrum.org Certification) - Done
@@ -903,6 +909,7 @@ package.json
 
 Ctrl K + Ctrl S -> To view all shortcuts
 Ctrl K + Ctrl 0 -> Collapse all
+Ctrl K + Ctrl J -> Expand All
 
 508/accessibility
 -Accessible via tabs
@@ -24912,7 +24919,10 @@ https://github.com/wardbell/subsink/issues/1
 
 Subscriptions Memory Leak Test Example:
 (Sign in using Github)
+https://stackblitz.com/edit/angular-observable-takeuntil-1-jgcjfb
 https://stackblitz.com/edit/angular-observable-takeuntil-1-uxmfrg
+https://stackblitz.com/edit/angular-observable-takeuntil-1-enzcbj
+
 
 import { Component, OnDestroy, OnInit, VERSION } from '@angular/core';
 import { of, interval, Subject, Observable, Subscription } from 'rxjs';
@@ -26597,6 +26607,45 @@ The decorate-angular-cli.js file is a useful tool for anyone who wants to use Nx
 
 *************************************Tailwind CSS***************************
 
+Official Plugins: https://tailwindcss.com/docs/plugins#official-plugins
+Tailwind's Forms plugin: https://tailwindcss.com/docs/plugins#forms
+
+Tailwind Form css: https://github.com/tailwindlabs/tailwindcss-forms
+
+<div class="mt-8 max-w-md">
+  <div class="grid grid-cols-2 gap-6">
+    <div class="block"> (display block)
+      <span class="text-gray-700">Full name</span>
+      <input type="text" class="mt-1 block w-full" placeholder="" />
+    </div>
+    <div class="block">
+      <span class="text-gray-700">Email address</span>
+      <input type="email" class="mt-1 block w-full" placeholder="john@example.com" />
+    </div>
+  </div>
+</div>
+
+
+1 column in mobile. 2 in md and above
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label class="block">
+              <span class="text-gray-700">Input (text)</span>
+              <input
+                type="text"
+                class="form-input mt-1 block w-full"
+                placeholder="john@example.com"
+              />
+            </label>
+            <label class="block">
+              <span class="text-gray-700">Input (email)</span>
+              <input
+                type="email"
+                class="form-input mt-1 block w-full"
+                placeholder="john@example.com"
+              />
+            </label>
+
+          </div>
 *********Need to know all Tailwind utility classes: https://tailwindcss.com/docs/utility-first*********
 Tailwind. Style elements using pre-existing utility classes in html without writing CSS
 
@@ -27097,6 +27146,12 @@ theme> spacing
 By default, these values are inherited by the padding, margin, width, height, maxHeight, flex-basis, gap, inset,
 space, translate, scrollMargin, scrollPadding, and textIndent core plugins.
 
+theme > colors
+https://tailwindcss.com/docs/theme#colors
+By default, these colors are inherited by all color-related core plugins, like
+backgroundColor, borderColor, textColor, and others
+
+
 DEFault equates to rounded with no suffix. This is a common convention in Tailwind and is supported by all core plugins.
 https://tailwindcss.com/docs/theme#core-plugins
 
@@ -27185,7 +27240,125 @@ text-indigo-600
 bg-indigo-600
 
 
+Breakpoint prefix	Minimum width	CSS
+no prefix=> default mobile up t0 640px
+sm	640px	@media (min-width: 640px) { ... }
+md	768px	@media (min-width: 768px) { ... }
+lg	1024px	@media (min-width: 1024px) { ... }
+xl	1280px	@media (min-width: 1280px) { ... }
+2xl	1536px	@media (min-width: 1536px) { ... }
 
+---------------------------------snippets---------------------------------------
+https://tailwindcss.com/docs/hover-focus-and-other-states
+<ul role="list" class="p-6 divide-y divide-slate-200">
+  {#each people as person}
+    <!-- Remove top/bottom padding when first/last child -->
+    <li class="flex py-4 first:pt-0 last:pb-0">
+      <img class="h-10 w-10 rounded-full" src="{person.imageUrl}" alt="" />
+      <div class="ml-3 overflow-hidden">
+        <p class="text-sm font-medium text-slate-900">{person.name}</p>
+        <p class="text-sm text-slate-500 truncate">{person.email}</p>
+      </div>
+    </li>
+  {/each}
+</ul>
+
+
+<blockquote class="text-2xl font-semibold italic text-center text-slate-900">
+  When you look
+  <span class="relative">
+    <span class="block absolute -inset-1 -skew-y-3 bg-pink-500" aria-hidden="true"></span>
+    <span class="relative text-white">annoyed</span>
+  </span>
+  all the time, people think that you're busy.
+</blockquote>
+
+<label class="relative block">
+  <span class="sr-only">Search</span>
+  <span class="absolute inset-y-0 left-0 flex items-center pl-2">
+    <svg class="h-5 w-5 fill-slate-300" viewBox="0 0 20 20"><!-- ... --></svg>
+  </span>
+  <input class="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-slate-300 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 sm:text-sm" placeholder="Search for anything..." type="text" name="search"/>
+</label>
+
+white text color on blue background
+<button class="bg-[#1da1f2] text-white ...">
+  <svg><!-- ... --></svg>
+  Share on Twitter
+</button>
+
+https://tailwindcss.com/docs/responsive-design
+<!-- Width of 16 by default, 32 on medium screens, and 48 on large screens -->
+<img class="w-16 md:w-32 lg:w-48" src="...">
+
+https://tailwindcss.com/docs/adding-custom-styles
+<div class="bg-[#bada55] text-[22px] before:content-['Festivus']">
+  <!-- ... -->
+</div>
+
+<div class="bg-[--my-color]">
+  <!-- ... -->
+</div>
+
+https://tailwindcss.com/docs/functions-and-directives#apply
+.btn {
+  @apply font-bold py-2 px-4 rounded #{!important};
+}
+
+https://tailwindcss.com/docs/configuration#important-modifier
+<p class="font-bold !font-medium">
+  This will be medium even though bold comes later in the CSS.
+</p>
+
+https://tailwindcss.com/docs/functions-and-directives#screen
+@media screen(sm) {
+  /* ... */
+} will emit
+
+@media (min-width: 640px) {
+  /* ... */
+}
+
+<div class="{{ error ? 'text-red-600' : 'text-green-600' }}"></div>
+
+Difference between outline and border (css)
+An outline is a line that is drawn around elements, OUTSIDE the borders, to make the element "stand out".
+https://www.w3schools.com/css/css_outline.asp#:~:text=Note%3A%20Outline%20differs%20from%20borders,the%20width%20of%20the%20outline.
+
+
+https://play.tailwindcss.com/
+
+<!-- Using Tailwind Grid -->
+<div class="grid md:grid-cols-3 gap-6 p-6">
+  <div style="background-color:blue">1</div>
+  <div style="background-color:blue">2</div>
+  <div style="background-color:blue">3</div>
+  <div style="background-color:blue">4</div>
+  <div style="background-color:blue">5</div>
+  <div style="background-color:blue">6</div>
+  <div style="background-color:blue">7</div>
+  <div style="background-color:blue">8</div>
+</div>
+
+<!-- Using Flex -->
+<div class="clear-right flex flex-row gap-6 p-6">
+  <div style="background-color:blue" class="basis-1/3">1</div>
+  <div style="background-color:blue" class="basis-1/3">2</div>
+  <div style="background-color:blue" class="basis-1/3">3</div>
+</div>
+
+<div class="clear-right flex flex-row gap-6 p-6">
+  <div style="background-color:blue" class="w-full md:w-1/3">1</div>
+  <div style="background-color:blue" class="w-full md:w-1/3">2</div>
+  <div style="background-color:blue" class="w-full md:w-1/3">3</div>
+</div>
+
+
+<div class="grid grid-cols-1 gap-6 p-6 float-right">
+  <span style="background-color:blue" class="w-10">1</span>
+</div>
+
+*************************************Tailwind CSS End***************************
 
 DevExtreme Templates:
 Angular DevExtreme
@@ -27198,6 +27371,8 @@ https://js.devexpress.com/Angular/Documentation/21_1/Guide/UI_Components/Common/
 https://js.devexpress.com/Angular/Documentation/21_1/ApiReference/UI_Components/Markup_Components/dxTemplate/
 
 
-
+Responsive Browser Testing:
+https://screenfly.org/#u=https%3A//dev.lpl.com%3A8000/samaum/&w=1920&h=1200&a=1
+https://responsivetesttool.com/?url=http://cmboappqa1.sdqa.lpl.com/AdvisoryOpsTool/samAUM_Dashboard
 
 
