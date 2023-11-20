@@ -1,4 +1,4 @@
-to run dist build
+To run dist build
 cd dist/production
 npx http-server . // (to serve the production bundle)
 
@@ -6,6 +6,12 @@ cd dist/production/apps/appname
 npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
+
+Angular generate command:
+e.g
+ng generate service hero
+ng generate component product-details
+https://angular.io/cli/generate
 
 Git branching and merging: https://www.varonis.com/blog/git-branching
 Git merge:
@@ -66,6 +72,7 @@ https://kumargandhi.in/2021/09/29/create-angular-app-in-a-specific-version/#:~:t
 
 ---------------------------------------FontAwesome in Angular 15-----------------------------------------
 https://fontawesome.com/
+https://github.com/FortAwesome/angular-fontawesome/blob/HEAD/docs/usage/features.md
 https://fontawesome.com/docs/web/use-with/angular
 https://www.npmjs.com/package/@fortawesome/angular-fontawesome  (see Compatibility table)
 
@@ -567,6 +574,9 @@ E2E Testing:
 NX=> Playwright
 https://blog.nrwl.io/introducing-playwright-support-for-nx-d8108ee11d46
 https://www.youtube.com/watch?v=k1U3PuBrZFQ
+
+Jest Unit Test Debugging:
+https://jestjs.io/docs/troubleshooting
 
 Jest Unit Testing:
 https://www.jstwister.com/post/unit-testing-beginners-guide-testing-functions
@@ -5741,6 +5751,33 @@ A structural directive puts a <ng-template> . *ngIf or *ngFor
 
 2) 01_SportsStore_Angl4_CLI1 (Apress Updated code for Angular 4)  (Apress Book one)
 
+
+confirm dialog/confirm modal
+Create global shared component 'confirm-dialog'
+
+Option#1
+
+@Input() confirmConfig: IConfirmModalConfig
+
+export interface IConfirmModalContent {
+  title?: string;
+  body?: string;
+  cancelButtonText?: string;
+  continueButtonText?: string;
+  param?: any   //can pass or not pass. E.g pass in deletedRowId as param
+}
+
+@Output cancelClicked = new EventEmitter();
+@Output continueClicked = new EventEmitter<any>(); //pass back param if needed. E.g pass in deletedRowId as param. On continueClicked, pass this back so we can delete the row
+
+On Your Page
+<dx-popup [(visible)]="isVisible">
+   <ao-shared-confirm-dialog id="cancelxx" [confirmConfig]="confirmConfigCanelxx" (cancelClicked)="closeConfirmModal()" (continueClicked)="deletexx(param)"></ao-shared-confirm-dialog>
+<dx-popup>
+
+<dx-popup [(visible)]="isVisible">
+   <ao-shared-confirm-dialog id="modifyxx" [confirmConfig]="confirmConfigModifyxx" (cancelClicked)="closeConfirmModal()" (continueClicked)="modifyxx(param)"></ao-shared-confirm-dialog>
+<dx-popup>
 
 -----------------------------------------------------------------------------------------------------------------------------------
 
@@ -19634,6 +19671,7 @@ public SomeDbContext() : baseSomeDbContext
 
 
 Error:  Error: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked
+https://angular.io/errors/NG0100
 
 Optimal
  Restructure/Redesign code so the error won't be triggered
@@ -26747,6 +26785,8 @@ and pasting the list of class names.
 To re-use classes, try using @apply operator
 https://tailwindcss.com/docs/reusing-styles#extracting-classes-with-apply
 
+Tailwind- Loading - pulse animation
+https://tailwindcss.com/docs/animation
 
 It has  first-class CSS grid support
 https://tailwindcss.com/
