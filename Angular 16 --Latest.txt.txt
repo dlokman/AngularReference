@@ -7,6 +7,10 @@ npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
 
+C# to Typescript conversion:
+VSCode Extension: https://marketplace.visualstudio.com/items?itemName=adrianwilczynski.csharp-to-typescript
+Online website: https://csharptotypescript.azurewebsites.net/
+
 Angular generate command:
 e.g
 ng generate service hero
@@ -283,6 +287,7 @@ TODO:
    Typescript Ref 2: https://www.typescriptlang.org/docs/handbook/2/classes.html
    Typescript Ref 3: https://www.typescriptlang.org/cheatsheets
    Typescript Utilities: https://www.typescriptlang.org/docs/handbook/utility-types.html
+   Javascript/Typescript online playground: https://playcode.io/new
 
    Git Ref: https://learn.microsoft.com/en-us/azure/devops/repos/git/command-prompt?view=azure-devops
    Angular StyleGuide: https://angular.io/guide/styleguide
@@ -2358,6 +2363,9 @@ The declare keyword in TypeScript is used for the Ambient declaration of variabl
 https://www.geeksforgeeks.org/explain-when-to-use-declare-key--in-typescript/
 declare let $: any;  <--using jquery in typescript
 ----------------------------------Typescript Online Docs-----------------------------------------------------
+
+Index Signatures (dictionary pattern- key/value)
+https://www.typescriptlang.org/docs/handbook/2/objects.html#index-signatures
 
 Strict
    strictBindCallApply
