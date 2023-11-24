@@ -1,3 +1,4 @@
+
 To run dist build
 cd dist/production
 npx http-server . // (to serve the production bundle)
@@ -12,6 +13,22 @@ e.g
 ng generate service hero
 ng generate component product-details
 https://angular.io/cli/generate
+​
+Search Annually: 'Stack Overflow Developer survey'
+
+Searching for npm packages: https://www.npmjs.com/
+
+Criteria:
+Popularity indicates how many times the package has been downloaded. This is a good indicator of packages that others have found to be especially useful, but not foolproof.
+
+Quality includes considerations such as the presence of a readme file, stability, tests, up-to-date dependencies, custom website, and code complexity.
+
+Maintenance ranks packages according to the attention given by developers. Packages that are maintained more frequently are more likely to work well with the current or upcoming versions of npm, for example.
+
+Optimal combines the three other criteria in a meaningful way.
+
+Nx mono repos- From Monorepo Mess to Monorepo Bliss: Avoiding Common Mistakes: 
+https://www.infoq.com/presentations/monorepo-mistakes/?utm_term=development&utm_campaign=Nx%20Community%20-%20Newsletter&utm_medium=email&_hsmi=282307446&_hsenc=p2ANqtz-_-IFklOsME0JdQC-AUWpFVbSy2SaO_lzsO6JgB40rKxEql_oiEPIKZAD6R--M_3zXcMxXwwZS2TWYQ5g3TbjrajaEhkQ&utm_content=282307446&utm_source=hs_email
 
 Git branching and merging: https://www.varonis.com/blog/git-branching
 Git merge:
