@@ -8,6 +8,20 @@ npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
 
+Using spread operator in Angular template:
+https://github.com/angular/angular/issues/11850
+
+Stackoverflow search reference:
+[arrayProp]="[{lorem: 'lorem'}, ...otherObjects]" OR
+<li (click)="myOnClick([el.id, ...el.childrenIds])">Clickiclick</li>
+https://stackoverflowteams.help/en/articles/4400196-search-existing-content
+
+to search within specific tags, enclose them in square brackets:
+[devexpress] [devextreme-angular] DevExtreme SelectBox using Angular 15  How to add 'Select All' as first option via Html
+
+DevExtreme Support Center:
+https://supportcenter.devexpress.com/ticket/list?searchString=dxtabpanel%20cache&sorting=Relevance
+
 C# to Typescript conversion:
 VSCode Extension: https://marketplace.visualstudio.com/items?itemName=adrianwilczynski.csharp-to-typescript
 Online website: https://csharptotypescript.azurewebsites.net/
@@ -18,6 +32,9 @@ ng generate service hero
 ng generate component product-details
 https://angular.io/cli/generate
 ​
+Prettify json online:
+https://jsonformatter.org/json-pretty-print
+
 Search Annually: 'Stack Overflow Developer survey'
 
 Searching for npm packages: https://www.npmjs.com/
@@ -31,7 +48,7 @@ Maintenance ranks packages according to the attention given by developers. Packa
 
 Optimal combines the three other criteria in a meaningful way.
 
-Nx mono repos- From Monorepo Mess to Monorepo Bliss: Avoiding Common Mistakes: 
+Nx mono repos- From Monorepo Mess to Monorepo Bliss: Avoiding Common Mistakes:
 https://www.infoq.com/presentations/monorepo-mistakes/?utm_term=development&utm_campaign=Nx%20Community%20-%20Newsletter&utm_medium=email&_hsmi=282307446&_hsenc=p2ANqtz-_-IFklOsME0JdQC-AUWpFVbSy2SaO_lzsO6JgB40rKxEql_oiEPIKZAD6R--M_3zXcMxXwwZS2TWYQ5g3TbjrajaEhkQ&utm_content=282307446&utm_source=hs_email
 
 Git branching and merging: https://www.varonis.com/blog/git-branching
@@ -429,7 +446,55 @@ It is open source, you can use PrimeNG @ 13 but it is no longer in active develo
 updates or fixes unless you pay for LTS. Can still use it for free in companies though.
 
 
+--------------------------------------------------Filter by pipe- any property----------------------------------------------------------
+
+
+import { Pipe, PipeTransform } from '@angular/core';
+
+/*
+    Sample usecases:
+
+    "array | filterBy: '!==' : {'I' : 'S'}"
+    Filter array where I property is not equal to 'S'
+
+    "array | filterBy: '===' : {'Name' : 'Dan'}"
+    Filter array where Name property is equal to 'Dan'
+
+*/
+
+@Pipe({
+  name: 'filterBy'
+})
+export class FilterByPipe implements PipeTransform {
+
+    transform(items: any[], operator: string, filterterm: any): any[] {
+
+    let result = items;
+
+    if (items && items.length && operator && filterterm) {
+        const propertyName = Object.keys(filterterm)[0];
+
+        if (operator === '!==') {
+          result = items.filter(item => item[propertyName] !== filterterm[propertyName]);
+        }
+
+        if (operator === '===') {
+          result = items.filter(item => item[propertyName] === filterterm[propertyName]);
+        }
+    }
+
+    return result;
+  }
+}
+
+
+
+
+
+
 ------------------------------------------------------------------------------------------------------------
+
+
 
 Angular Signals Ref (Developer Preview Angular 16. Don't need to wait for stable release. Looks like won't have any issue):
 Previously could use change detection to accomplish the same purpose via getters
@@ -8709,6 +8774,23 @@ sourcemap = true: generate map files so you can debug typescript files
 
 
 2 way binding to a component variable- [(ngModel)]="hero.name"
+
+
+2 way binding example: visible
+
+ parent component
+ <confirm-dialog [(visible)] = "isVisible">
+
+ shared component: confirm-dialog
+ @Input() visible = false;
+ @Output() visibleChange = new EventEmitter();
+
+ hideModal() {
+   this.visible = false;
+   this.visibleChange.emit(false); (to update isVisible property in the parent component via 2 way binding of [(visible)])
+ }
+
+
 
 
 version of the application- Smaller Angular framework download size, Detect template errors earlier. Tree shaking)
