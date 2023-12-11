@@ -11,6 +11,78 @@ nx dep-graph (draws graph)
 Using spread operator in Angular template:
 https://github.com/angular/angular/issues/11850
 
+AngularJs Filters: https://docs.angularjs.org/api/ng/filter
+Angular 2+ Pipes: https://angular.io/guide/pipes-overview
+
+angularJs to angular 2+
+$filter('filter')(..); 		  => use lodash's _.filter
+$filter('orderBy')(..);       => use lodash's _.orderBy
+
+$filter('date')(rowData, "MM/dd/yyyy"); 			      => use moment
+
+$filter('currency')(rowData)  							  => use Angular 2+ built-in currency pipe (https://angular.io/guide/pipes-overview)
+$filter('lowercase')	 => use Angular 2+ built-in LowerCasePipe pipe (https://angular.io/guide/pipes-overview)
+$filter('uppercase')     => use Angular 2+ built-in UpperCasePipe pipe (https://angular.io/guide/pipes-overview)
+
+
+Javascript Difference between EventHandlers and EventListener
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
+
+addEventListener("readystatechange", (event) => {});  <= Event Listeners. Can have multiple listeners
+onreadystatechange = (event) => {};					  <= Event handler. Can only have 1 Event Handler
+
+The main difference between event handlers and addEventListener in JavaScript is that you can only have one event handler for a
+specific event, but you can have multiple event listeners for the same event.
+
+
+How to intercept XMlHttpRequest (api call) - Javascript Interceptor as opposed to Angular Interceptor
+https://dev.to/iserioton/how-to-override-xhrfetch-method-in-javascript-g44
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
+
+https://caniuse.com/addeventlistener
+https://www.lambdatest.com/web-technologies/addeventlistener
+
+***Javascript Interceptor within Angular's App_Initializer. Using Javascript Proxy for XMlHttpRequest***
+const appInitializerFn =
+  (configService: ConfigService, globalConfigService: GlobalConfigService,  router: Router) =>
+  () => {
+    // Each Angular app will set the globalConfigService dynamically on application startup so that it
+    // can be available both in the apps/angularapp as well as libs/ao-shared.
+    // eslint-disable-next-line no-param-reassign
+    globalConfigService.rest = configService.rest;
+
+    XMLHttpRequest = new Proxy(XMLHttpRequest, {
+      construct:  (target: any, args: any) => {
+        const xhr = new target(...args);
+        // Do whatever you want with XHR request
+       xhr.addEventListener("readystatechange", (event: any) => {
+          if(event.currentTarget.readyState === XMLHttpRequest.OPENED) {  //monitoring xhr.open() call
+              xhr.setRequestHeader("Authorization", "XXXXX-XXXX-XXXX-XXXX-readystatechange");
+			   // router.navigate(['/login']);
+              // console.log(xhr.__zone_symbol__xhrURL);
+              // console.log(configService.rest); // access to service
+          }
+        });
+
+        return xhr;
+      },
+    });
+
+    return true;
+  };
+
+FileSaver:
+https://github.com/eligrey/FileSaver.js
+
+XLSX/SheetJs:
+https://docs.sheetjs.com/docs/getting-started/installation/frameworks
+https://git.sheetjs.com/sheetjs/sheetjs/issues
+
+import { write, utils } from 'xlsx';
+import { saveAs } from 'file-saver';
+
 Stackoverflow search reference:
 [arrayProp]="[{lorem: 'lorem'}, ...otherObjects]" OR
 <li (click)="myOnClick([el.id, ...el.childrenIds])">Clickiclick</li>
@@ -2841,6 +2913,10 @@ for (var _i = 0; _i < numbers.length; _i++) {
   console.log(num);
 }
 
+//price can be simple type like a string/number or an object
+prices.forEach((price: number, index: number) => {
+   writePrice(names[index], calculateTax(price));
+});
 
 The double equal sign (==) performs a comparison that applies type coercion. The triple equal sign
 (===) applies a strict comparison that will return true only if the values have the same type and are equal.
@@ -24627,8 +24703,8 @@ it('test func', (done:DoneFn)=> {
 
    spyOn(service, 'methodOnService')
     .withArgs('sample').and
-    .returnValue (
-     Promise.resolve(data.somedata);
+    .returnValue (Promise.resolve(data.somedata);
+
     );
 
   service.methodOnService('sample').then(
