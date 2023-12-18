@@ -8,11 +8,70 @@ npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
 
+Angular 17:
+
+New Angular website: https://angular.dev/
+
+Introducing Angular 17- Blog: https://blog.angular.io/introducing-angular-v17-4d7033312e4b
+
+Angular Full course including Angular 17 features:
+https://angular-university.io/course/angular-course
+https://angular-university.io/
+
+Angular 17 New Features (Email received on Nov 9 8:07am)
+These are the highlights of this latest release:
+
+new template control flow syntax:   The structural directives *ngIf, *ngFor and *ngSwitch are being replaced by @ngif, @ngfor,
+and @ngswitch. This solves several problems: we don't have to import them each time on standalone components anymore, "if else if else"
+ logic is now easily supported, no more need for so many ng-containers. It also makes the upcoming signal reactivity story much easier
+to implement in the future
+
+new build system and improved performance: The CLI is now using internally Vite and esbuilder, resulting in much smaller bundles and
+ increased runtime performance, measured up to 67% in certain cases.
+
+deferred partial template loading: the new @defer syntax allows us to easily load parts of the template dynamically, depending on
+ certain conditions. For example, load a part of the template after user scrolls beyond a certain point, etc. This a great
+ complement to lazy loading of standalone components with loadComponent, helping make your application even more fine-grained.
+
+the signals API is mostly out of developer preview: the new signal-based reactivity API is mostly ready, although the effect()
+ API remains on developer preview, to iron out some corner cases. Signals are not yet plugged in to the change detection system
+  in general, that will only come with signal-based components. But if you use OnPush and use signals, then you already have
+  the benefit that the parents of the dirty component won't have to checked for change detection. So there is already some
+  benefit for using signals in terms of runtime performance. But the main benefits will come only with signal-based components,
+   maybe on Angular 18.
+
+Server-side rendering hydration is ready: SSR is now even more integrated into the CLI. SSR Hydration is now ready for
+production use. It's now super simple to deploy an Angular SSR server in Firebase with just a few CLI commands
+
+
+Angular: How to implement JWT role based Authorization in an Angular application
+https://www.youtube.com/watch?v=JhpehE1uR_c&list=PLOa5YIicjJ-XalPcuhk2suHU0l84UdRc6&index=14
+
+
+Angular Signals: Complete guide
+https://blog.angular-university.io/angular-signals/
+
 Using spread operator in Angular template:
 https://github.com/angular/angular/issues/11850
 
 AngularJs Filters: https://docs.angularjs.org/api/ng/filter
 Angular 2+ Pipes: https://angular.io/guide/pipes-overview
+
+javascript keycodes
+https://css-tricks.com/snippets/javascript/javascript-keycodes/
+
+Check for 'Not a #'
+if (Number.isNaN(Number(feeRate))) {
+      console.log('not a valid #')
+} else {
+   console.log('valid #')
+}
+
+Number.isNaN() returns true if the value is a number is value 'NaN
+
+if (Number.isNaN(Number(feeRate))) {
+	//Not a number
+}
 
 angularJs to angular 2+
 $filter('filter')(..); 		  => use lodash's _.filter
@@ -24,6 +83,10 @@ $filter('currency')(rowData)  							  => use Angular 2+ built-in currency pipe 
 $filter('lowercase')	 => use Angular 2+ built-in LowerCasePipe pipe (https://angular.io/guide/pipes-overview)
 $filter('uppercase')     => use Angular 2+ built-in UpperCasePipe pipe (https://angular.io/guide/pipes-overview)
 
+
+OneWayBinding:'<',
+TwoWayBinding:'=',
+callBackFunction:'&'
 
 Javascript Difference between EventHandlers and EventListener
 https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
@@ -566,7 +629,8 @@ export class FilterByPipe implements PipeTransform {
 
 ------------------------------------------------------------------------------------------------------------
 
-
+Angular Signals: Complete guide
+https://blog.angular-university.io/angular-signals/
 
 Angular Signals Ref (Developer Preview Angular 16. Don't need to wait for stable release. Looks like won't have any issue):
 Previously could use change detection to accomplish the same purpose via getters
@@ -1897,6 +1961,9 @@ Data flow
 
 The [(ngModel)] directive is used to simplify two-way bindings so that you don t have to apply both an event and
 a property binding to the same element.
+
+Difference between (change) event and (ngModelChange) event:
+https://www.tektutorialshub.com/angular/ngmodelchange-change-event-in-angular/
 
 structural directives: which are used to change the structure/layout of the HTML document   *ngIf, *ngFor
 attribute directives: that change the appearance or behavior of a single element e.g. [class] [style.display]
