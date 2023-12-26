@@ -1,4 +1,7 @@
 
+build
+"build:app1": "nx build app1"
+
 To run dist build
 cd dist/production
 npx http-server . // (to serve the production bundle)
@@ -7,6 +10,10 @@ cd dist/production/apps/appname
 npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
+
+
+SCSS Review:
+https://sass-lang.com/guide/
 
 Angular 17:
 
@@ -186,6 +193,13 @@ Optimal combines the three other criteria in a meaningful way.
 Nx mono repos- From Monorepo Mess to Monorepo Bliss: Avoiding Common Mistakes:
 https://www.infoq.com/presentations/monorepo-mistakes/?utm_term=development&utm_campaign=Nx%20Community%20-%20Newsletter&utm_medium=email&_hsmi=282307446&_hsenc=p2ANqtz-_-IFklOsME0JdQC-AUWpFVbSy2SaO_lzsO6JgB40rKxEql_oiEPIKZAD6R--M_3zXcMxXwwZS2TWYQ5g3TbjrajaEhkQ&utm_content=282307446&utm_source=hs_email
 
+Git deleted branch in github. Now delete local remote branch that still has a reference:
+https://refine.dev/blog/git-delete-remote-branch-and-local-branch/#what-are-tracking-branches-and-how-to-delete-them
+git remote prune origin
+
+How to delete a branch locally and remotely:
+https://stackoverflow.com/questions/2003505/how-do-i-delete-a-git-branch-locally-and-remotely
+
 Git branching and merging: https://www.varonis.com/blog/git-branching
 Git merge:
 https://www.togaware.com/linux/survivor/Git_Merge_Master_into.html
@@ -280,7 +294,9 @@ git config --list => to list all git config settings including username and emai
 npm show default config anf overrides
 npm config ls -l
 
+npm config ls -l
 npm config list (tcheck what registry pointing to
+
 
 cloning using SSH in VsCode Powershell:
 git clone git@github.com:reponame
@@ -806,9 +822,10 @@ https://www.jstwister.com/post/unit-testing-beginners-guide-testing-functions
 https://www.jstwister.com/post/unit-testing-beginners-guide-spying-fake-timers
 https://www.jstwister.com/post/unit-testing-beginners-guide-mock-http-and-files
 
+https://jestjs.io/docs/getting-started
 https://jestjs.io/docs/api
 https://jestjs.io/docs/jest-object
-https://jestjs.io/docs/getting-started
+
 
 npx nx test [--options=xx]
 https://nx.dev/nx-api/jest/executors/jest
@@ -3775,7 +3792,7 @@ npm cache clean --force
 npm cache verify
 npm install
 
-if error or package-lock.json update, try installing again by deleting node_modules.
+if error or if package-lock.json updates, try installing again by deleting node_modules.
 else completely uninstall node and npm: https://reactgo.com/uninstall-node-npm-from-windows/
 and try installing fresh
 
