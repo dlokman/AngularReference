@@ -95,6 +95,11 @@ OneWayBinding:'<',
 TwoWayBinding:'=',
 callBackFunction:'&'
 
+angular.copy(source, destination)
+does not reset reference of destination. Does not do something like destination = source
+Goes over destination's elements (for arrays) or properties (for objects) are deleted and then all elements/properties from the
+source are copied to it.
+
 Javascript Difference between EventHandlers and EventListener
 https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
 
@@ -142,6 +147,49 @@ const appInitializerFn =
 
     return true;
   };
+
+Custom Title attribute css styling- custom tooltip
+https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag
+https://css-tricks.com/css-content/
+
+.custom-selectbox-item {
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-tooltip:hover {
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-tooltip .tooltip-text {
+  display: none;
+}
+
+.custom-tooltip:hover .tooltip-text {
+  position: absolute;
+  display: block;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+  z-index: 10000;
+  color: white;
+  background:#4a4a4a;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0.45rem;
+}
+
+ <button class="custom-tooltip mx-2" id="cloneIcon1">
+      <fa-icon   [icon]="faClone" class="cursor-pointer icon-color" ></fa-icon>
+      <span class="tooltip-text -ml-3.5">Copy</span>
+</button>
+--------------------------------------------------------------------
+
+https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag
 
 FileSaver:
 https://github.com/eligrey/FileSaver.js
