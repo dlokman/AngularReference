@@ -152,6 +152,31 @@ Custom Title attribute css styling- custom tooltip
 https://stackoverflow.com/questions/2011142/how-to-change-the-style-of-the-title-attribute-inside-an-anchor-tag
 https://css-tricks.com/css-content/
 
+----------------
+With Transition- delay in showing tooltip
+.custom-tooltip .tooltip-text {
+  display: block;
+  visibility: hidden;
+  position: absolute;
+}
+
+.custom-tooltip:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+  transition: visibility 0s 0.5s;
+  left: 0;
+  top: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+  z-index: 10000;
+  color: white;
+  background:#4a4a4a;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0.45rem;
+}
+--------------------
+
 .custom-selectbox-item {
   position: relative;
   white-space: nowrap;
@@ -182,6 +207,8 @@ https://css-tricks.com/css-content/
   font-weight: 400;
   padding: 0.45rem;
 }
+
+
 
  <button class="custom-tooltip mx-2" id="cloneIcon1">
       <fa-icon   [icon]="faClone" class="cursor-pointer icon-color" ></fa-icon>
