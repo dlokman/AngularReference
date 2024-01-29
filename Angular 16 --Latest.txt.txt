@@ -3562,6 +3562,10 @@ what is a polyfill: https://developer.mozilla.org/en-US/docs/Glossary/Polyfill
 
 -------------------------------------CSS Selectors--------------------------
 
+5 Modern CSS Features You Should Know In 2024:
+:has() Selector, Container Queries, CSS Nesting, text-wrap:balance And :focus-visible - Quick & Easy Examples.
+https://www.youtube.com/watch?v=oDDcZhKqUxQ
+
 :root  => selects the html element. Only that its specificity is higher.
 The :root CSS pseudo-class matches the root element of a tree representing the document. In HTML, :root represents the
 <html> element and is identical to the selector html, except that its specificity is higher.
@@ -22956,6 +22960,12 @@ Angular 15
 3) No polyfill specific file
 
 
+--------------------------------------Octopus Deploy----------------------------------------------
+
+Docs: https://octopus.com/docs
+Octopus Deploy Help Forum: https://help.octopus.com/
+
+--------------------------------------Octopus Deploy End----------------------------------------------
 
 
 ----------------------------------------------TODOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO----------------------------------------
