@@ -119,6 +119,9 @@ https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest
 https://caniuse.com/addeventlistener
 https://www.lambdatest.com/web-technologies/addeventlistener
 
+Testing intercepting XMLHttpRequest using Javascript Proxy for XMLHttpRequest. Solution works if we use EventListener
+and not EventHandler for readystatechange event
+
 ***Javascript Interceptor within Angular's App_Initializer. Using Javascript Proxy for XMlHttpRequest***
 const appInitializerFn =
   (configService: ConfigService, globalConfigService: GlobalConfigService,  router: Router) =>
@@ -888,6 +891,17 @@ E2E Testing:
 NX=> Playwright
 https://blog.nrwl.io/introducing-playwright-support-for-nx-d8108ee11d46
 https://www.youtube.com/watch?v=k1U3PuBrZFQ
+
+Nx Test Optimization:
+nx test appname --codeCoverage=true --silent --maxWorkers=50%
+https://blog.developer.adobe.com/improve-jest-runner-performance-a8f56708ba94
+
+Jest Optimization:
+https://blog.developer.adobe.com/improve-jest-runner-performance-a8f56708ba94
+
+Jest Babel error:
+[BABEL] Note: The code generator has deoptimised the styling of as it exceeds the max of 500KB.
+https://stackoverflow.com/questions/50992518/how-can-i-ignore-a-file-pattern-for-jest-code-coverage
 
 Jest Unit Test Debugging:
 https://jestjs.io/docs/troubleshooting
