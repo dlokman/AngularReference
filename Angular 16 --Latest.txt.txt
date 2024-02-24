@@ -11,8 +11,11 @@ npx http-server . // (to serve the production bundle)
 
 nx dep-graph (draws graph)
 
+Github. How to search Repos:
 search query (find projects in someOrg that use both xx1 and xxx library via package.json)
 org:someOrg  path:**/package.json xx1/javascript-sdk xxx
+
+How to enable https on IIs web server: https://www.ssl.com/how-to/binding-in-iis-10/
 
 SCSS Review:
 https://sass-lang.com/guide/
