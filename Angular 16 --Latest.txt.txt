@@ -17,8 +17,26 @@ org:someOrg  path:**/package.json xx1/javascript-sdk xxx
 
 How to enable https on IIs web server: https://www.ssl.com/how-to/binding-in-iis-10/
 
+Route Guards- Angular 15 and above (CanActivate & CanDeactivate Deprecated)
+https://stackoverflow.com/questions/75564717/angulars-canactivate-interface-is-deprecated-how-to-replace-it
+https://angular.io/guide/router-tutorial-toh#authenticate-with-authguard
+
+
+cloud certs (aws vs azure vs google):
+https://tutorialsdojo.com/aws-vs-azure-vs-gcp-which-one-should-i-learn/
+
+Configuring windows authentication in .Net Webapi (pre .net core) and Angular
+https://thethirdkind.home.blog/2019/01/09/configuring-asp-net-with-windows-authentication-from-an-angular-app-on-your-local-iis/
+
 SCSS Review:
 https://sass-lang.com/guide/
+
+Github. How to search Repos:
+search query (find projects in someOrg that use both xx1 and xxx library via package.json)
+org:someOrg  path:**/package.json xx1/javascript-sdk xxx
+
+How to enable https on IIs web server: https://www.ssl.com/how-to/binding-in-iis-10/
+
 
 Angular 17:
 
