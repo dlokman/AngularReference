@@ -9,11 +9,53 @@ npx http-server . // (to serve the production bundle)
 cd dist/production/apps/appname
 npx http-server . // (to serve the production bundle)
 
+to run https:
+npx http-server -S .
+
 nx dep-graph (draws graph)
+
+AWS Certifications
+1st: AWS Certified Developer Associate
+https://aws.amazon.com/certification/
+https://d1.awsstatic.com/training-and-certification/docs/AWS_certification_paths.pdf
 
 Github. How to search Repos:
 search query (find projects in someOrg that use both xx1 and xxx library via package.json)
 org:someOrg  path:**/package.json xx1/javascript-sdk xxx
+
+org:someOrg path:filename texttosearch
+
+Resolvers are only run after all Guards have succeeded
+
+Multiple Router Guards execute in parralel (and not sequentially):
+https://blog.angular.io/advancements-in-the-angular-router-5d69ec4c032
+
+{
+	path: 'somePath',
+	component: SomeComponent,
+	canActivate: [Guard1, Guard2]  // By Default these execute in parallel and not sequentially
+}
+
+const authorizeIfNeeded = (flag: boolean): Promise<boolean> => {
+     return new Promise((resolve, reject) => {
+         if(flag) {
+			console.log('in true');
+			return reject(false); // Or return reject()
+		 }
+
+		 console.log('after');
+		 return resolve(true);   // Or return resolve()
+	 });
+}
+
+authorizeIfNeeded(true).then((val) => {
+   console.log('Success: ' + val);
+},
+(err) => {
+	console.log('Error: ' + err);
+}
+)
+
 
 How to enable https on IIs web server: https://www.ssl.com/how-to/binding-in-iis-10/
 
@@ -21,6 +63,8 @@ Route Guards- Angular 15 and above (CanActivate & CanDeactivate Deprecated)
 https://stackoverflow.com/questions/75564717/angulars-canactivate-interface-is-deprecated-how-to-replace-it
 https://angular.io/guide/router-tutorial-toh#authenticate-with-authguard
 
+forgerock error while using http:
+https://github.com/damienbod/angular-auth-oidc-client/issues/1320#issuecomment-989588077
 
 cloud certs (aws vs azure vs google):
 https://tutorialsdojo.com/aws-vs-azure-vs-gcp-which-one-should-i-learn/
@@ -36,6 +80,9 @@ search query (find projects in someOrg that use both xx1 and xxx library via pac
 org:someOrg  path:**/package.json xx1/javascript-sdk xxx
 
 How to enable https on IIs web server: https://www.ssl.com/how-to/binding-in-iis-10/
+
+Create a self signed ceritification- enable https on local iis:
+https://moriyama.co.uk/about-us/news/blog-how-to-create-a-self-signed-certificate-for-your-local-iis-website/
 
 
 Angular 17:
@@ -1237,6 +1284,23 @@ Dependencies: Libraries or modules that an NPM module needs in order to work in 
 
 peerDependencies: A peer dependency is a specific version or set of versions of a third-party software library that a module is designed to work with. They're similar in concept to the relationship between a browser extension and a browser. (Example: react-redux has two quite logical peerDependencies: react and redux.)
 
+Angular CDK
+https://blog.angular.io/a-component-dev-kit-for-angular-9f06e3b4b3b4
+
+Angular CDK is in the same Repo as Angular Material (https://github.com/angular/components). However, it doesn't look like Angular
+CDK has Angular material as its dependency
+https://github.com/angular/components/blob/main/src/cdk/package.json
+
+It looks like Angular material depends on cdk but cdk doesn't depend on Angular material. I'm looking under dependencies and
+peer dependencies
+
+Angular CDK Dependencies and Peer Dependencies
+
+
+
+
+
+
 The --legacy-peer-deps flag was introduced with v7 as a way to bypass peerDependency auto-installation; it tells NPM to ignore peer deps and proceed with the installation anyway. This is how things used to be with NPM v4 thru v6.
 
 peerDependencies: Dependendies of 3rd party software
@@ -1272,6 +1336,27 @@ package.json
 Ctrl K + Ctrl S -> To view all shortcuts
 Ctrl K + Ctrl 0 -> Collapse all
 Ctrl K + Ctrl J -> Expand All
+
+chrome://flags
+search for 'Insecure origins treated as secure'
+if url is http://www.google.com it will assume url is https://www.google.com
+
+chrome://net-internals/#hsts
+
+Github Copilot Docs
+https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode
+
+Right click on file to create unit tests
+Ctrl  + i within file to ask Co-pilot to do something
+
+HSTS (redirecting http to https) settings on IIS
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+https://https.cio.gov/hsts/
+
+How to clear HSTS in Chrome/Firefox. to stop redirecting http to https if want both
+http and https versions to display:
+https://www.thesslstore.com/blog/clear-hsts-settings-chrome-firefox/
+
 
 508/accessibility
 -Accessible via tabs
@@ -23048,10 +23133,6 @@ https://www.youtube.com/watch?v=OFr6Vkw0mq8 - done (good) Release Variables
 https://www.youtube.com/watch?v=D97Qhk8n-lU - done (good) - Build and Serve Configuration
 
 
-Sim8Q~f6-PXVTprs4Dxc1kbVPTlXKo~_Obes_czf
-Sim8Q~f6-PXVTprs4Dxc1kbVPTlXKo~_Obes_czf
-
-
 https://www.youtube.com/watch?v=iX1vHFghCtQ - done (decent)
 
 https://www.youtube.com/watch?v=LwDYfL7mGfw  - done (ok)
@@ -24837,6 +24918,45 @@ getSomeData(): Promise<SomeClass[]> {
 
 
 return Promise.reject(new HttpError(400));
+
+-----------------------------------------------Promise- api call- wait until it gets resolved---------------------------
+
+
+// calling code
+this.xService.callFunc().then(
+	() => {},   // success    resolve()
+	() => {}    // failure    reject()
+);
+
+callFunc(): Promise<void> {
+	return new Promise((resolve, reject) => {
+		this.apiService.getApiCall(options).then(
+			() => { resolve(); },   // success    resolve()
+			() => { reject(); }     // failure    reject()
+		)
+	})
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -------------------------------------------------UI---------------------------------------------------------
 
