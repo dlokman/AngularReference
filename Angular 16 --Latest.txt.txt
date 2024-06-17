@@ -238,6 +238,20 @@ https://github.com/Microsoft/vscode/wiki/Performance-Issues
 
 --------------------------------------------Github Copilot TODO End----------------------------------------
 
+Fetch Api  Va XmlHttpRequest
+The Fetch API provides an interface for fetching resources (including across the network). It is a more powerful and flexible
+replacement for XMLHttpRequest.
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+https://blog.openreplay.com/ajax-battle-xmlhttprequest-vs-fetch/
+https://stackoverflow.com/questions/35549547/fetch-api-vs-xmlhttprequest
+
+With Fetch Api, you can stream responses eg chatgpt responses.
+https://stackoverflow.com/questions/35549547/fetch-api-vs-xmlhttprequest
+
+Use Fetch Api with Angular using chatgpt- Real Time Data Streaming
+Youtube: https://www.youtube.com/watch?v=sht9n9LA1zw
+Github Repo: https://github.com/c-o-l-i-n/ng-generative-ai-demo
+
 
 build
 "build:app1": "nx build app1"
