@@ -1,3 +1,243 @@
+-------------------------------------------------------Github Copilot In Progress---------------------------------
+
+Reference
+
+@terminal => VsCode Terminal
+@workspace => current codebase open context
+
+Copilot only Trained till Angular 12 for now (Sep 2021)
+
+Input Up arrow to view previous prompt
+Input Down arrow to view next prompt
+
+// q: what does this code do?    (q: means asking a question. John Papa: https://www.youtube.com/watch?v=bBpHGUn-O5U&t=735s)
+
+chat window: can you suggest improvements to #file:package.json (pick a file) <------- chat variable #file
+
+Provide context to Copilot to get better predictions:
+1) Open files in tab (example a similar unit test file *.spec.ts. The more open tab files, the more context it provides Copilot)
+2) Comments on function/module
+3) well written function/parameter name
+4) Inline comments
+5) Import Statements
+6) function name
+7) data types
+
+To research something eg best library to encrypt data, do yourself using google, stackoverflow. Copilot is 3 years behind. Last trained Sep 2021. Trained on github open source code.
+
+***Using Copilot to debug error messages in the terminal***
+1) Debugging Unit Test Errors. Enable right click on Terminal via settings
+Highlight error message.
+  a) Right click > Copilot Explain this
+  b) Shift + Right click > Copilot Explain this
+  c) chat window: @terminal /explain #terminalSelection
+     Note: @, /, #
+ https://cognizant.udemy.com/course/github-copilot/learn/lecture/41361842#overview
+
+*** Code Improvement Suggestions***
+highlight code, then ask in chat "make suggestions to improve this code"
+
+***Code Generation***
+After Pressing Enter OR while in the middle of writing code, to go through all possible suggestions from Copilot.
+1) Hover over Code and click accept OR
+2) Press Alt + [
+
+Press Tab to complete suggestion
+
+after writing comment
+   hit enter and then hover and click on '...' and OPen Completions Panel for different suggestions
+   press "Ctrl + Enter" to see all possible suggestions in a different window
+
+***Code Explanations***
+Highlight block of code and in chat window type in:
+Explain what this code does
+
+*** Code Translations ***
+Highlight block of code and in chat window type in:
+Translate AngularJs code to Angular 12
+
+Type '/' in chat window and select @workspace before asking any question
+This will allow you to ask questions about your entire codebase.
+
+***Regex***
+// regex to check if username has at least 1 capital letter, 1 special character and is at least 8 characters long
+
+// regex to match the phone number in the format (xxx) xxx-xxxx
+
+Only use @workspace when you need Github some context of our workspace/codebase (files and content)
+
+Beakup up commands for Copilot. Give single tasks at a time
+
+Highlight Code and then hover over icon and click it to bring Inline Chat
+Press Ctrl + Shift + I to bring Quick Chat
+
+"based on selected html, do something"
+
+Copilot is non deterministic. prompts and results will differ for individuals.
+If needed, use 2 copilots on diff laptops to verify
+
+If a comment does not give you the desired output, then change the comment to try again
+
+can write comments in css /* */ eg make it look beautiful
+
+Using Copilot for documentation eg Readme file:
+https://www.youtube.com/watch?v=nmTMz8IXHbA&list=PLj6YeMhvp2S5_hvBl2SE-7YCHYlLQ0bPt&index=7
+--------------------------------------------------------------------------------------------
+
+How to create custom Angular libraries so we can publish them as npm packages and then use in other Angular projects
+
+Ref: https://angular.io/guide/libraries
+
+ng new my-workspace --no-create-application
+cd my-workspace
+ng generate library my-lib
+
+Angular Scoped Packages: https://www.youtube.com/watch?v=OlJEMhPGz6I&t=176s
+Group related npm packages
+
+*** Generating Code ***
+
+Chat window
+write me a function in typescript that will format a number as a string seperated by a comma
+every 3 characters from the right. For example 1000 will be "1,000", 50000 will be
+"50,000"
+
+
+Html Example:
+
+Add this to the b) Html list in Angular Reference
+
+Writing comment that describes what we want. Not saying create a ..
+
+<!-- A plain Bootstrap button with the label "Download" -->
+
+Asking a Question
+
+<!-- How can i ... -->
+
+<!-- create an interactive form using javascript that accepts text as input. The form must display a button and
+submit an asynchronous request to the /generate API endpoint -->
+
+To generate unit tests, highlight function and then in github copilot type in:
+Use jest to generate unit tests for this function
+
+*** Code Explanation ***
+Highlight code and then in chat window type:
+Explain what this code does
+
+*** Language Translation ***
+Highlight + Translate the selected code from AngularJS to Angular 15
+
+***Documentation***
+Function Documentation add top of function. Add /* Documentation */ and hit Tab. PRess enter to see suggestions
+for next ling
+
+/*
+  Documentation:xx
+  Method: xx
+  Description: xx
+  Parameters: xx
+  Return: xx
+*/
+
+OR Highlight Function and in chat windows type in. Generate Documentation for this function
+
+
+----------------------------------------Github Copilot----------------------------------------
+
+References:
+Copilot Features: https://patterns.hattori.dev/general/code-to-comment/
+microsoft copilot videos: https://learn.microsoft.com/en-us/shows/introduction-to-github-copilot/
+
+Copilot Top Usecases
+0) Using Copilot to debug error messages in the terminal (eg Debugging Unit Test Errors)
+1) Writing Unit Tests
+2) Code Explanations (code highlight and prompt:   explain what this code does)
+3) Code Simplification (code highlight and prompt: simplify this code)
+4) Language Translations (Convert AngularJs code to Angular 15)
+5) Generating Documentation
+6) Building Regular Expressions
+7) Fix Bugs
+8) List Steps
+9) Scaffolding new code or api
+10) Generate Commit Messages (click on copilot icon in the textbox where you type in the commit message)
+11) Multi Lingual Support (.ts file provide suggestions in typescript)
+12) Others
+13) get suggestions to improve code
+14) generate comments (// write comments so i know what this is doing
+
+What type of Cloud Orchestration environment subscription should I choose for internal
+POC/Hackathon development?
+
+You need to choose Innovation environment by placing request for Requesting and
+Accessing a Cloud Orchestration Environment.
+
+What type of Cloud environment type should I request?
+Cloud Orchestration can provision three distinct types of cloud environment. These are the same environment types that appear in Cognizant's Cloud Security Standard:
+
+
+https://ctsccprod.service-now.com/kb_view.do?sysparm_article=KB0011321
+Innovation:  Sandbox or training environments. No access to Internet
+Non-Production: are a little more formal than Innovation environments. development, integration, testing. No access to Internet
+Production: production applications, workloads, and activities. Access to Internet
+
+-------------------------------------------------------Github Copilot In Progress End---------------------------------
+
+
+--------------------------------------------Github Copilot TODO End----------------------------------------
+
+Github Copilot Docs
+https://docs.github.com/en/copilot/using-github-copilot/getting-started-with-github-copilot?tool=vscode
+
+Right click on file to create unit tests
+
+Ask Copilot to do something
+Ctrl  + i within file to ask Co-pilot to do something
+Ask in Github Copilot Chat
+
+Or write a comment
+1)Write comment to ask Github Copilot to do something and press enter eg:
+
+a) Typescript
+/* create a public method to add two numbers return the sum of two numbers in the sum variable */ OR
+// create a public method to add two numbers return the sum of two numbers in the sum variable
+
+b) Html
+<!-- create a button with click event that calls the AddTwoNumbers() method with two number paramaters -->
+
+Github Copilot is only trained until Angular 12. Last Training data Sep 2021.
+
+generate unit tests using github copilot:
+1) Create BeforeEach
+2) run unit tests to get code coverage via index.html
+   eg nx test projectname --codeCoverage=true --silent --maxWorkers=50%
+3) for a ts file, highlight one function with a mouse and then in github chat window type in
+    'generate unit tests using jest with 100% code coverage'
+4) rerun unit test to check code coverage.
+5) modify unit test to increase code coverage for the function until 100% coverage
+6) highlight next function with a mouse and then in github chat window type in
+    'generate unit tests using jest with 100% code coverage' and repeat
+
+-----------------------------------Github Copilot End-----------------------------------
+
+Be able to right click on Vscode Terminal Window:
+add this to settings.json
+"terminal.integrated.rightClickBehavior": "default"
+
+VsCode High CPU or Memory Usage:
+https://github.com/Microsoft/vscode/wiki/Performance-Issues
+https://stackoverflow.com/questions/53658769/why-does-vs-code-require-so-much-memory-how-can-i-make-it-run-more-memory-effic
+
+Troubleshoot VsCode extension causing high memory or cpu usage:
+F1 > Help: Start Extension Bisect". This will run binary search on your installed extensions by
+disabling some, reloading the window, and asking you whether the issue that you saw still occurs,
+until a single extension has been identified.
+https://github.com/Microsoft/vscode/wiki/Performance-Issues
+
+
+
+--------------------------------------------Github Copilot TODO End----------------------------------------
+
 
 build
 "build:app1": "nx build app1"
@@ -164,6 +404,9 @@ $filter('uppercase')     => use Angular 2+ built-in UpperCasePipe pipe (https://
 OneWayBinding:'<',
 TwoWayBinding:'=',
 callBackFunction:'&'
+Text Binding: '@'
+
+https://stackoverflow.com/questions/35855758/angularjs-data-binding-types
 
 angular.copy(source, destination)
 does not reset reference of destination. Does not do something like destination = source
@@ -1360,6 +1603,17 @@ https://www.thesslstore.com/blog/clear-hsts-settings-chrome-firefox/
 
 508/accessibility
 -Accessible via tabs
+https://v17.angular.io/guide/accessibility
+
+Angular dynamic binding:
+<!-- Use attr. when binding to an ARIA attribute -->
+<button [attr.aria-label]="myActionLabel">..</button>
+
+Angular static binding:
+<!-- Static ARIA attributes required no extra syntax -->
+<button aria-label="Save documen"></button>
+
+
 -Visually impaired - aria-label
 tabindex="0" [attr.aria-label]="Test label"
 
@@ -1899,6 +2153,9 @@ C:\Users\Danial.Lokman\source> git clone https://sede-pt-digt.visualstudio.com/C
 
 create cs-repo folder under C:\Users\Danial.Lokman\source>
 put contents of vsts repository-repo (Concept%20Selection%20with%20Machine%20Learning) into cs-repo folder via above command
+
+to bypass cors error, modify chrome browsers's properties
+"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security
 
 Chrome run while disbaling API CORS error. Right click Chrome> Properties
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\Apps\Test"
