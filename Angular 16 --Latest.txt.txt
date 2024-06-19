@@ -1,3 +1,82 @@
+
+********Angular 15 New Features********
+1) Standalone Api
+Docs: https://v15.angular.io/docs
+
+
+
+********Angular 16 New Features********
+https://www.youtube.com/watch?v=dFO2Lb-fcBs
+1) Router Updates: can pass Router data (Route Data, Path parameters, Query parameters) as component inputs (in routing) (3:15)
+2) Required Component Inputs (5:10)
+
+https://www.youtube.com/watch?v=bkOEMw0oTkY&t=165s
+1) Self closing tags (:35)
+
+Docs: https://v16.angular.io/docs
+
+
+
+
+********Angular 17 New Features********
+
+Blog: https://blog.angular.dev/introducing-angular-v17-4d7033312e4b
+
+
+Youtube: https://www.youtube.com/watch?v=36Hcx7kRYDg&t=1s
+1) New Control Flow syntax for html templates- ***In Developer Preview***  (2:09)  => Stable in v18
+   @if (replaces ngIf), @for (replaces ngFor), @switch( replaces ngSwitch)
+
+2) New Apps built with Angular CLI will be Standalone by default. No flag needed. (2:58)
+   Standalone will be the default way for building an application
+   ng new xx and ng generate component xxx will create components, directives and pipes as standalone
+   (https://www.youtube.com/watch?v=DKTtjV7nfQk 0:40)
+
+   To use modules, you have to specifically set standalone flag to false
+   ng new my-app --standalone false
+   ng generate component my-component --standalone false
+
+
+3) New build system for better performance: EsBuild (https://v17.angular.io/guide/esbuild)  (3:10)
+
+4) Custom Input Transforms (3:43)
+   (https://www.youtube.com/watch?v=DKTtjV7nfQk  2:54)
+
+5) Deferrable views - https://www.youtube.com/watch?v=yE-YUr_a4fU - ***In Developer Preview*** => Stable in v18
+   Just like had modules lazy loaded on demand
+   Load html templates on demand. Chunks of content that can be deferred loaded
+   @defer - need condition or trigger to specify when to load (2:48)
+
+6) Angular Signals - Stable release***
+
+7) Migrated Angular Cli from Webpack to Esbuild and Vite. Esbuild and Vite are now enabled by default. Improved Build performance.
+   Recommend using new Esbuild based build instead of webpack (https://www.youtube.com/watch?v=DKTtjV7nfQk 1:45)
+
+Docs: https://v17.angular.io/docs
+
+
+
+********Angular 18 New Features********  <-------------------TODO. Pending Usage
+
+Maximilian Schwarzmüller Course (Contains Standalone Components, Deferred Views, Signals):
+https://www.udemy.com/course/the-complete-guide-to-angular-2/?couponCode=D_0624
+
+https://www.youtube.com/watch?v=JTLDuL0BtUE
+https://www.youtube.com/watch?v=DK8M-ZFjaMw
+https://www.youtube.com/watch?v=nMM7yimvbnA
+https://www.youtube.com/watch?v=CoZD3fyMAtk
+https://www.youtube.com/watch?v=MZ6s5EL7hKk
+Blog: https://blog.angular.dev/angular-v18-is-now-available-e79d5ac0affe
+Docs: https://angular.dev/overview
+
+https://www.aceinfoway.com/blog/whats-new-in-angular-18#:~:text=Deferrable%20Views%20are%20Now%20Stable,in%20their%20applications%20and%20libraries.
+
+1) Deferrable views are now stable (no more developer preview)
+2) New Control Flow syntax for html templates are now stable (no more developer preview)
+   @if (replaces ngIf), @for (replaces ngFor), @switch( replaces ngSwitch)
+3) Making zone.js optional (Experimental)
+4) Considering making Rxjs optional
+
 -------------------------------------------------------Github Copilot In Progress---------------------------------
 
 Reference:
@@ -24931,6 +25010,9 @@ Errors in JavaScript can be handled using try-catch blocks.
 
 
 --------------------------------------------------CSS---------------------------------------------------
+CSS container Queries (based on container size)- Alternative to CSS media queries(based on viewport size)
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries
+
 
  - Work closely with UX to create screens
    Some CSS questions
