@@ -1,7 +1,9 @@
 -------------------------------------------------------Github Copilot In Progress---------------------------------
 
-Reference
+Reference:
+Copilot Top 10 Features: https://www.youtube.com/watch?v=2nPoiUJpDaU
 
+@vscode => Asking Vscode eg How do i change the vscode theme
 @terminal => VsCode Terminal
 @workspace => current codebase open context
 
