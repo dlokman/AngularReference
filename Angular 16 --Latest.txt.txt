@@ -6032,6 +6032,11 @@ font-awesome files production: http://codingstill.com/2013/01/set-mime-types-for
 angular cli template file (bottom): http://www.codemag.com/article/1705091
 
 
+Cache Busting - queryparam vs filename
+main.v2.js  (filename update with every change. recommended. angular out of the box)
+main.js?v=2 (queryparam. less common. can cause caching issues. different url supposed to make browser get latest main.js file)
+
+
 Visual Studio (Git Or TFS)
   Project 1 - Asp.net Webapi  (Visual Studio Build- Api Build) - Host Webapi in IIS
   Project 2 - Angular 2 UI    (Angular CLI Build- Front End Build)   - Host UI in IIs
