@@ -6526,7 +6526,7 @@ A structural directive puts a <ng-template> . *ngIf or *ngFor
   interpreted as being in UTC time zone. If your local time zone is 5 hours behind UTC, then when you output this date,
   it will appear as being 5 hours earlier than midnight on October 1st, 2022 in UTC
 
-  const date = new Date('2022-10-01') // creates as UC date if we use a string
+  const date = new Date('2022-10-01') // creates as UTC date if we use a string
   const dateOriginal = moment.utc(date).format("MM/DD/YYYY")
 
   const date1 = new Date('2022-10-01T00:00:00-05:00'); Creates as Houston Time
