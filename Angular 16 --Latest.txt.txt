@@ -1,6 +1,4 @@
 
-Test
-
 ********Angular 15 New Features********
 1) Standalone Api
 Docs: https://v15.angular.io/docs
@@ -314,6 +312,13 @@ generate unit tests using github copilot:
    eg nx test projectname --codeCoverage=true --silent --maxWorkers=50%
 3) for a ts file, highlight one function with a mouse and then in github chat window type in
     'generate unit tests using jest with 100% code coverage'
+
+     Sample using example to provide context to Github Copilot:
+	 Using xxx.pipe.spec.ts (have this opened in tab) as an example, generate unit tests using jest for xxx.pipe.ts with 100% code coverage
+
+	 Using xxx.pipe.spec.ts as an example, generate unit tests using jest for xxx.pipe.ts with 100% code coverage in xxx.pipe.spec.ts
+	 Do not change existing code in xxx.pipe.spec.ts
+
 4) rerun unit test to check code coverage.
 5) modify unit test to increase code coverage for the function until 100% coverage
 6) highlight next function with a mouse and then in github chat window type in
@@ -475,6 +480,8 @@ the signals API is mostly out of developer preview: the new signal-based reactiv
 Server-side rendering hydration is ready: SSR is now even more integrated into the CLI. SSR Hydration is now ready for
 production use. It's now super simple to deploy an Angular SSR server in Firebase with just a few CLI commands
 
+JWT: accesstoken decrypt:
+https://jwt.io/
 
 Angular: How to implement JWT role based Authorization in an Angular application
 https://www.youtube.com/watch?v=JhpehE1uR_c&list=PLOa5YIicjJ-XalPcuhk2suHU0l84UdRc6&index=14
@@ -492,7 +499,16 @@ Angular 2+ Pipes: https://angular.io/guide/pipes-overview
 javascript keycodes
 https://css-tricks.com/snippets/javascript/javascript-keycodes/
 
-Check for 'Not a #'
+// Check for a valid #. https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+
+if(+someValue) {     // + operator converts string to a # or NAN
+	console.log('valid #')
+} else {
+	console.log('not a valid #');
+}
+
+
+Check for 'Not a #'. Fails if string is empty
 if (Number.isNaN(Number(feeRate))) {
       console.log('not a valid #')
 } else {
@@ -2268,9 +2284,6 @@ C:\Users\Danial.Lokman\source> git clone https://sede-pt-digt.visualstudio.com/C
 
 create cs-repo folder under C:\Users\Danial.Lokman\source>
 put contents of vsts repository-repo (Concept%20Selection%20with%20Machine%20Learning) into cs-repo folder via above command
-
-to bypass cors error, modify chrome browsers's properties
-"C:\Program Files\Google\Chrome\Application\chrome.exe" --disable-web-security
 
 Chrome run while disbaling API CORS error. Right click Chrome> Properties
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --disable-web-security --user-data-dir="C:\Apps\Test"
@@ -6508,6 +6521,20 @@ A structural directive puts a <ng-template> . *ngIf or *ngFor
   source code: https://github.com/chsakell/aspnet5-angular2-typescript
   folder: C:\Users\Dan\Desktop\Anglr2Stuff\SampleNG2Apps\10_Angular2_CRUD_Asp.net_Core_Webapi
 
+  datetimepicker
+  When you create a Date object in Javascript (or Typescript, in this case) using  a string like '2022-10-01', it is
+  interpreted as being in UTC time zone. If your local time zone is 5 hours behind UTC, then when you output this date,
+  it will appear as being 5 hours earlier than midnight on October 1st, 2022 in UTC
+
+  const date = new Date('2022-10-01') // creates as UC date if we use a string
+  const dateOriginal = moment.utc(date).format("MM/DD/YYYY")
+
+  const date1 = new Date('2022-10-01T00:00:00-05:00'); Creates as Houston Time
+  const date2 = new Date(2022, 9, 1);
+
+  console.log(date);  //shows Sep 30 7pm
+  console.log(date1); //shows Oct 1
+  console.log(date2); //shows Oct 1
 
   angular 2 crud using asp.net core webapi and EF core
   https://chsakell.com/2016/06/27/angular-2-crud-modals-animations-pagination-datetimepicker/
