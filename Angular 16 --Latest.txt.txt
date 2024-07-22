@@ -1,4 +1,8 @@
 
+Angular Udemy Courses:
+Long Course. Known Individual: https://www.udemy.com/course/the-complete-guide-to-angular-2
+Short Course. Quick Jump start: https://www.udemy.com/course/the-complete-angular-master-class
+
 ********Angular 15 New Features********
 1) Standalone Api
 Docs: https://v15.angular.io/docs
@@ -78,6 +82,34 @@ https://www.aceinfoway.com/blog/whats-new-in-angular-18#:~:text=Deferrable%20Vie
 4) Considering making Rxjs optional
 
 -------------------------------------------------------Github Copilot In Progress---------------------------------
+
+Github Copilot Prompt Engineering Links:
+https://docs.github.com/en/copilot/using-github-copilot/prompt-engineering-for-github-copilot
+
+https://learn.microsoft.com/en-us/training/modules/introduction-prompt-engineering-with-github-copilot/
+
+https://github.blog/2023-06-20-how-to-write-better-prompts-for-github-copilot/
+
+https://dev.to/github/a-beginners-guide-to-prompt-engineering-with-github-copilot-3ibp
+
+https://learn.microsoft.com/en-us/shows/visual-studio-code/master-the-core-principles-of-prompt-engineering-with-github-copilot
+
+https://www.upwork.com/resources/prompt-engineering-with-github-copilot
+
+https://medium.com/@yar.dobroskok/github-copilot-prompting-as-a-pro-28301bbb4f7d
+
+https://medium.com/@arikbidny/mastering-github-copilot-essential-tips-tricks-and-prompt-engineering-for-optimal-coding-efd420864c3d
+
+https://www.youtube.com/watch?v=2nPoiUJpDaU
+
+https://www.youtube.com/watch?v=bBpHGUn-O5U
+
+https://www.youtube.com/watch?v=nmTMz8IXHbA
+
+https://www.youtube.com/watch?v=KjyMQzoJo8Y
+
+
+
 
 Reference:
 Copilot Top 10 Features: https://www.youtube.com/watch?v=2nPoiUJpDaU
