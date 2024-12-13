@@ -3,6 +3,34 @@ Angular Udemy Courses:
 Long Course. Known Individual: https://www.udemy.com/course/the-complete-guide-to-angular-2
 Short Course. Quick Jump start: https://www.udemy.com/course/the-complete-angular-master-class
 
+Vscode check .net version
+dotnet
+dotnet --version
+
+Copilot is better in inline code generation and error fixing in VsCode than in Visual Studio
+
+Vscode Container extension:
+https://code.visualstudio.com/docs/devcontainers/containers
+
+In Visual Studio Professional, launchSettings.json:
+iisSettings:    Api settings when running as IISEXpress
+profiles.http:  Api settings when running as HTTP
+profiles.https: Api settings when running as Https (also shows http api call)
+
+
+Switch http to https in visual studio:
+https://www.c-sharpcorner.com/article/switch-http-to-https-in-visual-studio/
+
+VsCode:
+Check Vscode Extensions CPU and Memory usage
+>Developer: Open Process Explorer
+
+Nuget packages download ranking:
+https://www.nuget.org/stats/packages
+
+Testing Frameworks for .Net: https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-with-dotnet-test
+
+
 ********Angular 15 New Features********
 1) Standalone Api
 Docs: https://v15.angular.io/docs
@@ -108,7 +136,75 @@ https://www.youtube.com/watch?v=nmTMz8IXHbA
 
 https://www.youtube.com/watch?v=KjyMQzoJo8Y
 
+copilot-instructions.md file can add in github folder
 
+
+1)
+file codereview by copilot
+select content of file. press Ctrl+shit+P
+>copilot review and comment
+
+2)
+PR reviewed by Copilot
+code review in pull request (preview mode. copilot can review pull request. copilot in reviewers)
+when available??
+
+3)
+Summary of description & issues (copilot icon on github page)
+Can summarize Github Repo Issue
+
+
+Can ask new language feature and then ask generate code using new feature <- which extension?
+
+Which extension can we use to ask to generate code using new language feature?
+
+Copilot workspace. Based on a github feature request, ask copilot what should i do...
+
+
+$TODO
+file codereview by copilot
+github.com/marketplace  ($TODO. Check whats available)
+
+github.com/marketplace/models (can compare LLM models. ask a question)
+
+---------------------------------------------------------------------------------------------------------------------------
+
+Performance Optimization
+
+Add query to xx.sql file and open in vscode and ask copilot
+1) how can i optimize query since it runs slow
+2) explain execution plan for this query
+
+"Review this SQL query and suggest performance improvements"
+"Debug why this query is running slow"
+
+select error in vscode and ask
+can you fix the error in #terminalSelection
+
+select requirement and ask:
+generate user stories from the selected requirement.
+generate acceptance criteria from the selected requirement
+
+ask question based on a specific file (use #file)
+
+create flow diagram (eg flowchart
+generate sequence diagram using mermaid.js library
+then paste the code in mermaid js to generate diagram
+https://mermaid.js.org/
+
+github.com/marketplace (copilot Vscode extensions) ($TODO. Check whats available)
+
+select user story
+generate manual testcases for this user story (can try different models and compare results)
+
+generate test data for above usecase
+
+>chat:export  (can export chat)
+
+ColpCheatSheet
+https://code.visualstudio.com/docs/copilot/copilot-vscode-features
+
+https://copilot.github.trust.page/
 
 
 Reference:
@@ -279,6 +375,7 @@ OR Highlight Function and in chat windows type in. Generate Documentation for th
 References:
 Copilot Features: https://patterns.hattori.dev/general/code-to-comment/
 microsoft copilot videos: https://learn.microsoft.com/en-us/shows/introduction-to-github-copilot/
+Guide: https://github.blog/developer-skills/github/how-to-write-better-prompts-for-github-copilot/
 
 Copilot Top Usecases
 0) Using Copilot to debug error messages in the terminal (eg Debugging Unit Test Errors)
@@ -296,6 +393,7 @@ Copilot Top Usecases
 12) Others
 13) get suggestions to improve code
 14) generate comments (// write comments so i know what this is doing
+15) Get help writing a tricky text or email (right tone about your concern and annoyance)
 
 What type of Cloud Orchestration environment subscription should I choose for internal
 POC/Hackathon development?
@@ -5732,6 +5830,24 @@ git pull origin branchname  (to pull branchname from the server/origin)
 
 C# code execute online: https://dotnetfiddle.net
 
+Tuple Deconstruction Assignment:
+• (StatusCode, Value) = (statusCode, value); is a tuple deconstruction assignment.
+•This syntax allows you to assign values to multiple properties in a single, concise statement.
+
+public HttpResponseException(int statusCode, object? value = null) =>
+    (StatusCode, Value) = (statusCode, value);
+
+//checks if context.Exception is of type HttpResponseException. If yes, then assigns value of
+// context.Exception to httpResponseException
+if (context.Exception is HttpResponseException httpResponseException)
+
+In C#  if we have the folliwing in csproj file
+<Nullable>enable</Nullable>
+
+string myString2 = "Hel.lo";   myString2 is not nullable
+myString2 = null; // compiler warning since it was declared as not being nullable. need to declare as string? myString1 = "Hel.lo";
+
+if we don't <Nullable>enable</Nullable> set this then all reference types can be set a null value
 
 Resources Functions: Array, Lodash, RXJS
 Arrays: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
